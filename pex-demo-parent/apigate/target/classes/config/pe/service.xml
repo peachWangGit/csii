@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.csii.com.cn/schema/pe"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://www.csii.com.cn/schema/pe http://www.csii.com.cn/schema/pe/pe.xsd">
+   
+	<bean id="generalAwareProcessor" class="com.csii.pe.config.support.GeneralAwareProcessor">
+		<!-- 校验器模式 -->
+		<map name="validators">
+  			<ref name="option" >optionValidator</ref>
+  			<ref name="range" >rangeValidator</ref>
+  			<ref name="length" >lengthValidator</ref>
+  			<ref name="pattern" >patternValidator</ref>
+  			<ref name="type" >typeValidator</ref>
+		</map>
+		<map name="services">
+		</map>
+	</bean>
+</config>

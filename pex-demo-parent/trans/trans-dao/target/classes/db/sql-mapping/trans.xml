@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+    "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="trans">
+	<typeAlias alias="Mcjnl" type="com.csii.demo.trans.bean.Mcjnl" />
+	<typeAlias alias="JTFBankInner" type="com.csii.demo.trans.bean.JTFBankInner" />
+
+	<resultMap class="JTFBankInner" id="queryCrossBankPayeeByConditionResult">
+		<result property="jnlNo" column="JnlNo" />
+		<result property="payerAcNo" column="PayerAcNo" />
+		<result property="payeeAcNo" column="PayeeAcNo" />
+		<result property="amount" column="Amount" />
+		<result property="fundUsage" column="FundUsage" />
+	</resultMap>
+
+	<insert id="insertMcjnl" parameterClass="Mcjnl">
+		insert mcjnl(JNLNO,
+		CIFSEQ, AMOUNT) values(#jnlno#,#cifseq#,#amount#)
+	</insert>
+	<select id="queryJTFbankinner" parameterClass="java.lang.String"
+		resultMap="queryCrossBankPayeeByConditionResult">
+		SELECT JnlNo,
+		PayerAcNo,
+		PayeeAcNo,
+		Amount,
+		FundUsage
+		FROM
+		jtfbankinner
+		where userid=#userid#
+	</select>
+
+
+	<insert id="insertJtfBankInner" parameterClass="JTFBankInner">
+		INSERT INTO jtfbankinner
+		(jnlNo,
+		PayerAcNo,
+		PayeeAcNo,
+		Amount,
+		FundUsage,
+		UserId
+		)
+		VALUES
+		(
+		#jnlNo#,
+		#payerAcNo#,
+		#payeeAcNo#,
+		#amount#,
+		#fundUsage#,
+		#userId#
+		)
+
+	</insert>
+</sqlMap>

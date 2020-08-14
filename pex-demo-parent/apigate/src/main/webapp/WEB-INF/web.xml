@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app
+        version="3.0"
+        xmlns="http://java.sun.com/xml/ns/javaee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+    <display-name>ifp-mgt</display-name>
+    
+<!--     <filter> -->
+<!--   <filter-name>braveFilter</filter-name>  -->
+<!--   <filter-class> -->
+<!--     org.springframework.web.filter.DelegatingFilterProxy -->
+<!--   </filter-class> -->
+<!--   <init-param>     -->
+<!--     <param-name>targetFilterLifecycle</param-name>   -->
+<!--     <param-value>true</param-value> -->
+<!--   </init-param> -->
+<!-- </filter> -->
+<!-- <filter-mapping> -->
+<!--   <filter-name>braveFilter</filter-name> -->
+<!--   <url-pattern>/*</url-pattern> -->
+<!--   <dispatcher>REQUEST</dispatcher> -->
+<!--   <dispatcher>FORWARD</dispatcher> -->
+<!--   <dispatcher>INCLUDE</dispatcher> -->
+<!--   <dispatcher>ERROR</dispatcher> -->
+<!-- </filter-mapping> -->
+    
+    <filter>
+        <display-name>Encoding Filter</display-name>
+        <filter-name>encoding filter</filter-name>
+        <filter-class>com.csii.pe.channel.http.servlet.FixEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+
+    </filter>
+    <filter-mapping>
+        <filter-name>encoding filter</filter-name>
+        <servlet-name>Dispatcher1</servlet-name>
+    </filter-mapping>
+    <listener>
+        <listener-class>com.csii.pe.channel.http.SessionListener</listener-class>
+    </listener>
+
+
+    <servlet>
+        <display-name>powerengine dispatcher</display-name>
+        <servlet-name>Dispatcher1</servlet-name>
+        <servlet-class>com.csii.pe.channel.http.servlet.MainServlet</servlet-class>
+
+        <init-param>
+            <param-name>defaultErrorView</param-name>
+            <param-value>defaultError</param-value>
+        </init-param>
+        <init-param>
+            <param-name>synchronizeOnSession</param-name>
+            <param-value>true</param-value>
+        </init-param>
+
+        <load-on-startup>0</load-on-startup>
+    </servlet>
+
+
+    <servlet-mapping>
+        <servlet-name>Dispatcher1</servlet-name>
+        <url-pattern>*.do</url-pattern>
+    </servlet-mapping>
+
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+        <welcome-file>index.htm</welcome-file>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+
+
+    <!--分布式会话插件集成-->
+<!--     <filter> -->
+<!--         <filter-name>GSessionFilter</filter-name> -->
+<!--         <filter-class>com.csii.pe.channel.http.session.GlobalSessionFilter</filter-class> -->
+<!--     </filter> -->
+
+<!--     <filter-mapping> -->
+<!--         <filter-name>GSessionFilter</filter-name> -->
+<!--         <servlet-name>Dispatcher1</servlet-name> 根据实际情况修改 -->
+<!--     </filter-mapping> -->
+
+<!--     <listener> -->
+<!--         <display-name>GlobalSessionListener</display-name> -->
+<!--         <listener-class>com.csii.pe.channel.http.session.GlobalSessionListener</listener-class> -->
+<!--     </listener> -->
+
+</web-app>

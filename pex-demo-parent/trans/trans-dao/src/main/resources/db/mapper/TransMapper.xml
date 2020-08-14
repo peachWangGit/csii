@@ -1,0 +1,39 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.csii.demo.trans.dao.mapper.TransMapper">
+
+    <resultMap id="queryCrossBankPayeeByConditionResult" type="com.csii.demo.trans.bean.JTFBankInner">
+        <result property="jnlNo" column="JnlNo" />
+        <result property="payerAcNo" column="PayerAcNo" />
+        <result property="payeeAcNo" column="PayeeAcNo" />
+        <result property="amount" column="Amount" />
+        <result property="fundUsage" column="FundUsage" />
+    </resultMap>
+
+    <insert id="insertMcjnl" parameterType="com.csii.demo.trans.bean.Mcjnl">
+		insert into mcjnl(JNLNO,CIFSEQ, AMOUNT) values(#{mcjnl.jnlno},#{mcjnl.cifseq},#{mcjnl.amount})
+	</insert>
+
+    <select id="queryJTFbankinner" parameterType="java.lang.String"
+            resultMap="queryCrossBankPayeeByConditionResult">
+		SELECT JnlNo,
+		PayerAcNo,
+		PayeeAcNo,
+		Amount,
+		FundUsage
+		FROM
+		jtfbankinner
+		where userid=#{userid}
+	</select>
+
+
+
+
+    <insert id="insertJtfBankInner" parameterType="com.csii.demo.trans.bean.JTFBankInner">
+		INSERT INTO jtfbankinner (jnlNo,Amount) VALUES (#{jtfBankInner.jnlNo},#{jtfBankInner.amount})
+	</insert>
+	
+	
+	
+</mapper>

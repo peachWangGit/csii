@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE segment SYSTEM "packetutf8.dtd">
+<segment>
+	<xmlTag xmlAttributes="attr={'a,3'}">
+		<String name="JnlNo"></String>
+	</xmlTag>	
+	<xmlTag xmlAttributes="attr=${name}">
+	  <String name="Amount"></String>
+	</xmlTag>
+</segment>

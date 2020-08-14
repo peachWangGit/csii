@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.csii.com.cn/schema/pe"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.csii.com.cn/schema/pe http://www.csii.com.cn/schema/pe/pe.xsd">
+
+    <!--占位action-->
+    <action id="Placeholder" class="com.csii.pe.action.PlaceholderAction"/>
+    <!--空交易-->
+    <action id="dummyAction" class="com.csii.ibs.action.DummyAction"/>
+
+
+    <!-- 信息输出的国际化定义 -->
+    <messageSource class="com.csii.uibs.CustomMessageSource">
+        <param name="basenames">
+            classpath:/config/msg/dictionary,classpath:/config/msg/consmsg,classpath:/config/msg/checkmsg
+        </param>
+        <param name="customBasenames">classpath:/config/msg/dictionary</param>
+        <param name="cacheSeconds">10</param>
+        <param name="fallbackToSystemLocale">false</param>
+        <param name="defaultEncoding">UTF-8</param>
+    </messageSource>
+
+
+    <!-- Controller that creates Context and calls CoreController  -->
+    <coreController id="coreController" class="com.csii.pe.core.CoreControllerImpl">
+        <ref name="loggingInterceptor">loggingInterceptor</ref>
+    </coreController>
+    <!--自定义log输出字段-->
+    <bean id="loggingInterceptor" class="com.csii.pe.core.LoggingInterceptor">
+        <param name="loggingFields">AcNo=account</param>
+    </bean>
+
+
+   
+
+    <bean id="uniqueUserIdResolver" class="com.csii.pe.accesscontrol.lc.UniqueUserIdResolver">
+        <param name="variableName">TellerId</param>
+    </bean>
+    <user id="user" class="com.csii.ibs.IbsUser" singleton="false"/>
+
+   
+
+    <bean id="rolePool" class="com.csii.pe.accesscontrol.rc.support.RolePool" />
+
+    <!--<bean id="SimplePasswordValidator" class="com.csii.ibs.common.SimplePasswordValidator" />-->
+
+    <!-- 系统服务定义 -->
+    <bean id="ibsTrsAgent" class="com.csii.ibs.IbsTrsAgent"/>
+
+
+
+    <bean id="transactionRoleResolver" class="com.csii.pe.accesscontrol.rc.support.TransactionRoleResolver" />
+
+    
+
+
+</config>

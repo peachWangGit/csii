@@ -1,0 +1,28 @@
+<spring:beans xmlns:spring="http://www.springframework.org/schema/beans"
+	xmlns="http://www.csii.com.cn/schema/pe" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+       					   http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd
+       					   http://www.csii.com.cn/schema/pe	http://www.csii.com.cn/schema/pe/pe-1.0.xsd">
+
+	<config>
+		<bean name="CXMLTransformerFactory" class="com.csii.pe.transform.XmlTransformerFactory">
+			<param name="path">/pe/cxml</param>
+			<param name="debug">true</param>
+			<param name="cacheEnable">true</param>
+			<map name="parsers">
+				<ref name="pCXMLPacketParser">CXMLPacketParser</ref>
+			</map>
+		</bean>
+		<bean name="CXMLPacketParser" class="com.csii.pe.transform.stream.xml.XmlStreamParser">
+			<param name="debug">true</param>
+			<param name="usingRLCL">true</param>
+			<param name="tagTypeClassMapping">/pe/cxml/xmltagtypemapping.properties</param>
+			<param name="tagClassMapping">/pe/cxml/xmltagmapping.properties</param>
+			<param name="tagAliasMapping">/pe/cxml/xmlaliasmapping.properties</param>
+		</bean>
+
+
+		
+	</config>
+</spring:beans>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+    "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="user">
+
+     <resultMap id="User" class="com.csii.demo.usr.bean.User" >
+		<result property="userId" column="UserId" javaType="java.lang.Long"/>
+		<result property="userType" column="UserType" javaType="java.lang.String"/>
+		<result property="username" column="Username" javaType="java.lang.String"/>
+		<result property="password" column="Password" javaType="java.lang.String"/>
+		<result property="email" column="Email" javaType="java.lang.String"/>
+		<result property="phone" column="Phone" javaType="java.lang.String"/>
+		<result property="idType" column="IdType" javaType="java.lang.String"/>
+		<result property="idNo" column="IdNo" javaType="java.lang.String"/>
+		<result property="createDate" column="CreateDate"  javaType="java.sql.Date"/>
+	</resultMap>
+       
+	
+	<select id="selectUserById" parameterClass="java.lang.Long" resultMap="User"  >
+	  select UserId,UserType,Username,Password,Email,Phone,IdType,IdNo,CreateDate 
+      from User where UserId=#UserId#
+	</select>
+	<select id="selectUserByUsername" parameterClass="java.lang.String" resultMap="User"  >
+	  select UserId,UserType,Username,Password,Email,Phone,IdType,IdNo,CreateDate 
+      from User where Username=#Username#
+	</select>
+	
+	
+	
+	
+</sqlMap>

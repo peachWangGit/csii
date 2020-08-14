@@ -1,0 +1,566 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.csii.demo</groupId>
+	<artifactId>pex-demo-parent</artifactId>
+	<version>1.0.0</version>
+	<packaging>pom</packaging>
+	<properties>
+		<!-- 制定文件编码 -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<maven.compiler.encoding>UTF-8</maven.compiler.encoding>
+		<!-- 相关软件版本号 -->
+		<commons-lang.version>2.6</commons-lang.version>
+		<spring.version>4.3.4.RELEASE</spring.version>
+<!-- 		<csii.pe.version>10.0.1</csii.pe.version> -->
+		<csii.pe.version>10.1.1</csii.pe.version>
+<!-- 		<dubbo.version>2.5.3</dubbo.version> -->
+		<dubbo.version>2.7.7</dubbo.version>
+		<servlet.version>3.1.0</servlet.version>
+		<solrj.version>6.3.0</solrj.version>
+		<zookeeper.version>3.4.8</zookeeper.version>
+		<jackson.version>2.8.5</jackson.version>
+		<kryo.version>3.0.3</kryo.version>
+		<slf4j.version>1.7.21</slf4j.version>
+		<logback.version>1.1.7</logback.version>
+		<tomcat-jdbc.version>8.5.4</tomcat-jdbc.version>
+		<spring-ibatis.version>2.0.8</spring-ibatis.version>
+		<ibatis-sqlmap.version>2.3.4.726</ibatis-sqlmap.version>
+		<httpclient.version>4.5.3</httpclient.version>
+		<elasticsearch.version>2.3.4</elasticsearch.version>
+		<fastjson.version>1.2.27</fastjson.version>
+		<flowctrl.version>1.1.1</flowctrl.version>
+		<http.core.version>4.4.6</http.core.version>
+		<mysql-connector.version>5.1.46</mysql-connector.version>
+	</properties>
+
+	<dependencies>
+		<!--基础依赖，和业务无关，该下的依赖是每个模块都需要的依赖 -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>20.0</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.16.10</version>
+			<scope>provided</scope>
+		</dependency>
+
+	</dependencies>
+	<dependencyManagement>
+		<dependencies>
+			<!-- apache commons -->
+			<dependency>
+				<groupId>commons-lang</groupId>
+				<artifactId>commons-lang</artifactId>
+				<version>${commons-lang.version}</version>
+			</dependency>
+			<!-- PE依赖jar -->
+			<dependency>
+				<groupId>com.csii.pe</groupId>
+				<artifactId>pe-core</artifactId>
+				<version>${csii.pe.version}</version>
+				<exclusions>
+			        <exclusion>
+			            <groupId>javassist</groupId>
+			            <artifactId>javassist</artifactId>
+			        </exclusion>
+			    </exclusions>
+			</dependency>
+			<dependency>
+				<groupId>com.csii.pe</groupId>
+				<artifactId>pe-core-extend</artifactId>
+				<version>${csii.pe.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.csii.pe</groupId>
+				<artifactId>pe-http</artifactId>
+				<version>${csii.pe.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.csii.pe</groupId>
+				<artifactId>pe-http-extend</artifactId>
+				<version>${csii.pe.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.csii.pe</groupId>
+				<artifactId>pe-ibs</artifactId>
+				<version>${csii.pe.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.csii.pe</groupId>
+				<artifactId>pe-transform</artifactId>
+				<version>${csii.pe.version}</version>
+			</dependency>
+<!-- 			<dependency> -->
+<!-- 				<groupId>com.csii.pe</groupId> -->
+<!-- 				<artifactId>pe-dubbo-bridge</artifactId> -->
+<!-- 				<version>${csii.pe.version}</version> -->
+<!-- 			</dependency> -->
+			<dependency>
+				<groupId>com.csii.pe</groupId>
+				<artifactId>pe-config</artifactId>
+				<version>${csii.pe.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.csii.pe</groupId>
+				<artifactId>pe-utils</artifactId>
+				<version>${csii.pe.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.csii.pe</groupId>
+				<artifactId>pe-uibs</artifactId>
+				<version>${csii.pe.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.csii.pe</groupId>
+				<artifactId>pe-rule</artifactId>
+				<version>${csii.pe.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.csii.pe</groupId>
+				<artifactId>pe-adapter</artifactId>
+				<version>${csii.pe.version}</version>
+				<exclusions>
+			        <exclusion>
+			            <groupId>javassist</groupId>
+			            <artifactId>javassist</artifactId>
+			        </exclusion>
+			    </exclusions>
+			</dependency>
+			<!--report -->
+			<dependency>
+				<groupId>com.csii.pe</groupId>
+				<artifactId>pe-report-api</artifactId>
+				<version>${csii.pe.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.csii.pe</groupId>
+				<artifactId>pe-report-impl</artifactId>
+				<version>${csii.pe.version}</version>
+			</dependency>
+
+			<!-- service core -->
+			<dependency>
+				<groupId>com.csii.pe</groupId>
+				<artifactId>pe-service-core</artifactId>
+				<version>${csii.pe.version}</version>
+			</dependency>
+
+
+			<!--transform -->
+			<dependency>
+				<groupId>com.csii.pe</groupId>
+				<artifactId>pe-transform-core</artifactId>
+				<version>${csii.pe.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.csii.pe</groupId>
+				<artifactId>pe-transform-corex</artifactId>
+				<version>${csii.pe.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.csii.pe</groupId>
+				<artifactId>pe-transform-alias</artifactId>
+				<version>${csii.pe.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.csii.pe</groupId>
+				<artifactId>pe-transform-excel</artifactId>
+				<version>${csii.pe.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.csii.pe</groupId>
+				<artifactId>pe-transform-iso8583</artifactId>
+				<version>${csii.pe.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.csii.pe</groupId>
+				<artifactId>pe-transform-json</artifactId>
+				<version>${csii.pe.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.csii.pe</groupId>
+				<artifactId>pe-transform-sop</artifactId>
+				<version>${csii.pe.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.csii.pe</groupId>
+				<artifactId>pe-transform-xml</artifactId>
+				<version>${csii.pe.version}</version>
+			</dependency>
+
+			<!--security -->
+			<dependency>
+				<groupId>com.csii.pe</groupId>
+				<artifactId>pe-security</artifactId>
+				<version>${csii.pe.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.csii.pe</groupId>
+				<artifactId>pe-security-cert</artifactId>
+				<version>${csii.pe.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.csii.pe</groupId>
+				<artifactId>pe-security-otp</artifactId>
+				<version>${csii.pe.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.csii.pe</groupId>
+				<artifactId>pe-sercurity-sm</artifactId>
+				<version>${csii.pe.version}</version>
+			</dependency>
+
+			<!-- pe session -->
+<!-- 			<dependency> -->
+<!-- 				<groupId>com.csii.pe</groupId> -->
+<!-- 				<artifactId>pe-session</artifactId> -->
+<!-- 				<version>${csii.pe.version}</version> -->
+<!-- 			</dependency> -->
+
+			<dependency>
+				<groupId>com.esotericsoftware</groupId>
+				<artifactId>kryo</artifactId>
+				<version>${kryo.version}</version>
+			</dependency>
+
+			<!-- spring依赖 -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-webmvc</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-aop</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-beans</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-core</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-expression</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-web</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-orm</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-jdbc</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-test</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-tx</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+
+
+			<dependency>
+			    <groupId>org.apache.curator</groupId>
+			    <artifactId>curator-framework</artifactId>
+			    <version>4.0.0</version>
+			    <exclusions>
+			        <exclusion>
+			            <groupId>org.apache.zookeeper</groupId>
+			            <artifactId>zookeeper</artifactId>
+			        </exclusion>
+			    </exclusions>
+			</dependency>
+			<dependency>
+			    <groupId>org.apache.curator</groupId>
+			    <artifactId>curator-recipes</artifactId>
+			    <version>4.0.0</version>
+			</dependency>
+			<!--dubbo -->
+			<dependency>
+			  <groupId>com.csii.pe</groupId>
+			  <artifactId>pe-dubbo-bridge</artifactId>
+			  <version>10.1.1.2</version>
+			  <exclusions>
+			    <exclusion>
+			      <groupId>com.alibaba</groupId>
+			      <artifactId>dubbo</artifactId>
+			    </exclusion>
+			  </exclusions>
+			</dependency>
+			<dependency>
+			  <groupId>org.apache.dubbo</groupId>
+			  <artifactId>dubbo</artifactId>
+			  <version>${dubbo.version}</version>
+			  	<exclusions>
+	                <exclusion>
+	                    <groupId>org.springframework</groupId>
+	                    <artifactId>spring</artifactId>
+	                </exclusion>
+	                <exclusion>
+	                    <artifactId>netty</artifactId>
+	                    <groupId>org.jboss.netty</groupId>
+	                </exclusion>
+	            </exclusions>
+			</dependency>
+			<dependency>
+				<groupId>com.101tec</groupId>
+				<artifactId>zkclient</artifactId>
+				<version>0.10</version>
+		   </dependency>
+			<!--servlet -->
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>javax.servlet-api</artifactId>
+				<version>${servlet.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>javax.servlet.jsp.jstl</groupId>
+				<artifactId>javax.servlet.jsp.jstl-api</artifactId>
+				<version>1.2.1</version>
+			</dependency>
+
+			<!-- solr -->
+			<dependency>
+				<groupId>org.apache.solr</groupId>
+				<artifactId>solr-solrj</artifactId>
+				<version>${solrj.version}</version>
+			</dependency>
+
+			<!-- zookeeper -->
+			<dependency>
+				<groupId>org.apache.zookeeper</groupId>
+				<artifactId>zookeeper</artifactId>
+				<version>${zookeeper.version}</version>
+				<!-- <exclusions> <exclusion> <groupId>log4j</groupId> <artifactId>log4j</artifactId> 
+					</exclusion> <exclusion> <groupId>org.apache.logging.log4j</groupId> <artifactId>log4j-api</artifactId> 
+					</exclusion> <exclusion> <groupId>org.apache.logging.log4j</groupId> <artifactId>log4j-core</artifactId> 
+					</exclusion> <exclusion> <groupId>org.slf4j</groupId> <artifactId>slf4j-log4j12</artifactId> 
+					</exclusion> </exclusions> -->
+			</dependency>
+			<!-- jackJson -->
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-core</artifactId>
+				<version>${jackson.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-databind</artifactId>
+				<version>${jackson.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-annotations</artifactId>
+				<version>${jackson.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.fasterxml.jackson.dataformat</groupId>
+				<artifactId>jackson-dataformat-smile</artifactId>
+				<version>${jackson.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.fasterxml.jackson.dataformat</groupId>
+				<artifactId>jackson-dataformat-cbor</artifactId>
+				<version>${jackson.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.fasterxml.jackson.dataformat</groupId>
+				<artifactId>jackson-dataformat-yaml</artifactId>
+				<version>${jackson.version}</version>
+			</dependency>
+
+			<!--mysql 驱动 -->
+			<dependency>
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+				<version>${mysql-connector.version}</version>
+			</dependency>
+
+			<!--tomcat-jdbc 连接池 -->
+			<dependency>
+				<groupId>org.apache.tomcat</groupId>
+				<artifactId>tomcat-jdbc</artifactId>
+				<version>${tomcat-jdbc.version}</version>
+			</dependency>
+
+			<!--file upload -->
+			<dependency>
+				<groupId>commons-fileupload</groupId>
+				<artifactId>commons-fileupload</artifactId>
+				<version>1.3.1</version>
+			</dependency>
+
+			<!--logback -->
+			<dependency>
+				<groupId>ch.qos.logback</groupId>
+				<artifactId>logback-classic</artifactId>
+				<version>${logback.version}</version>
+			</dependency>
+			<!--ibatis -->
+			<dependency>
+				<groupId>org.apache.ibatis</groupId>
+				<artifactId>ibatis-sqlmap</artifactId>
+				<version>${ibatis-sqlmap.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-ibatis</artifactId>
+				<version>${spring-ibatis.version}</version>
+			</dependency>
+			<!-- httpclient -->
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpclient</artifactId>
+				<version>${httpclient.version}</version>
+			</dependency>
+			<!-- elasticsearch -->
+			<dependency>
+				<groupId>org.elasticsearch</groupId>
+				<artifactId>elasticsearch</artifactId>
+				<version>${elasticsearch.version}</version>
+			</dependency>
+			<!-- fastjson -->
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>fastjson</artifactId>
+				<version>${fastjson.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpcore</artifactId>
+				<version>${http.core.version}</version>
+			</dependency>
+
+			<!-- ibs flowctrl -->
+			<dependency>
+				<groupId>com.csii.pe.ibs.flowctrl</groupId>
+				<artifactId>com.csii.pe.ibs.flowctrl</artifactId>
+				<version>${flowctrl.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.csii.pe.ibs.common</groupId>
+				<artifactId>com.csii.pe.ibs.common</artifactId>
+				<version>6.0.0</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.csii.pe.ibs.log.common</groupId>
+				<artifactId>com.csii.pe.ibs.log.common</artifactId>
+				<version>1.0.0</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.csii.pe.ibs.log.standard</groupId>
+				<artifactId>com.csii.pe.ibs.log.standard</artifactId>
+				<version>1.0.1</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>jcl-over-slf4j</artifactId>
+				<version>1.7.7</version>
+			</dependency>
+			<dependency>
+				<groupId>backport-util-concurrent</groupId>
+				<artifactId>backport-util-concurrent</artifactId>
+				<version>3.1</version>
+			</dependency>
+			<!-- dubbo 2.5.3加载包  start-->
+<!--             <dependency> -->
+<!-- 			   <groupId>com.netflix.curator</groupId> -->
+<!-- 			    <artifactId>curator-framework</artifactId> -->
+<!-- 			    <version>1.1.12</version> -->
+<!--             </dependency> -->
+            <!-- dubbo 2.5.3加载包  end-->
+		</dependencies>
+	</dependencyManagement>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.5.1</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+					<encoding>utf-8</encoding>
+				</configuration>
+			</plugin>
+			<!-- 组件版本管理： 设置版本号mvn versions:set -DnewVersion=1.1-SNAPSHOT,会修改pomx.xml文件的版本号，并且生成一个pom.xml.versionsBackup的本分文件 
+				回退版本号mvn versions:revert,删除pom.xml.versionsBackup，并且回退到上一个pom.xml文件 提交版本号mvn 
+				versions:commit,更新pom.xml文件，并删除pom.xml.versionsBackup 将依赖jar替换为release版本mvn 
+				versions:use-releases 展示新版的plugin版本mvn versions:display-plugin-updates 展示新版依赖包的版本mvn 
+				versions:display-dependency-updates -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>versions-maven-plugin</artifactId>
+				<version>2.3</version>
+			</plugin>
+		</plugins>
+	</build>
+	<!-- <repositories> <repository> <id>nexus</id> <name>Team Nexus Repository</name> -->
+<!-- 		<url>http://localhost:9090/repository/maven-public/</url> </repository> </repositories> -->
+	<!-- <repositories> -->
+	<!-- <repository> -->
+	<!-- <id>nexus</id> -->
+	<!-- <name>Team Nexus Repository</name> -->
+	<!-- <url>http://192.168.1.101:8088/nexus/content/repositories/releases</url> -->
+	<!-- </repository> -->
+	<!-- </repositories> -->
+	<!-- <pluginRepositories> -->
+	<!-- <pluginRepository> -->
+	<!-- <id>nexus</id> -->
+	<!-- <name>Team Nexus Repository</name> -->
+	<!-- <url>http://192.168.1.101:8088/nexus/content/repositories/releases</url> -->
+	<!-- </pluginRepository> -->
+	<!-- </pluginRepositories> -->
+	
+
+	<modules>
+		<module>usr</module>
+		<module>trans</module>
+		<module>tools</module>
+		<module>apigate</module>
+		<module>sim</module>
+        <module>batch</module>
+    </modules>
+</project>

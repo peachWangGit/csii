@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.csii.com.cn/schema/pe"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.csii.com.cn/schema/pe http://www.csii.com.cn/schema/pe/pe.xsd">
+
+    <!-- Begin of Event Processing Server Part -->
+
+    <!-- end of Event Processing Server Part -->
+
+    <userRegistry id="failureUserRegistry" class="com.csii.ibs.lc.ClusterDelayControlResourceList">
+        <!-- 	<userRegistry id="failureUserRegistry" class="com.csii.ibs.lc.ClusterDelayControlResourceList"> -->
+        <ref name="eventDispatcher">eventDispatcher</ref>
+        <param name="eventId">pblacklist</param>
+    </userRegistry>
+
+    <userRegistry id="successUserRegistry" class="com.csii.ibs.lc.ClusterOnlineUserRegistry">
+        <ref name="eventDispatcher">eventDispatcher</ref>
+        <param name="eventId">ponlineuser</param>
+    </userRegistry>
+
+    <bean id="RefreshEventApplicationListener" class="com.csii.ibs.lc.RefreshEventApplicationListener">
+        <ref name="clusterDelayControlResourceList">failureUserRegistry</ref>
+        <ref name="clusterOnlineUserRegistry">successUserRegistry</ref>
+    </bean>
+
+
+</config>

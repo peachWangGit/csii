@@ -1,0 +1,101 @@
+/* CSS Document */
+* { font:13px "����";}
+
+html { height:100%; max-height:100%; border:0; overflow:hidden;}
+* html { padding:100px 0 50px 0;}
+body { height:100%; max-height:100%; margin:0; overflow:hidden;}
+
+#head { position:absolute; margin:0; top:0; left:0; width:100%; 
+background:url(../images/logo_bg.jpg) repeat-x;
+height:70px;
+z-index:5;}
+
+#pufalogo{
+background:url(../images/logo.jpg) no-repeat;
+height:66px;
+width:272px;
+overflow:hidden;
+margin-bottom:4px;
+font-size:0px;
+}
+
+#newip{
+padding-left:12px;
+visibility:hidden;
+}
+#banklogo{
+background:url(../images/logo_little.jpg) no-repeat;
+height:70px;
+width:300px;
+float:right;
+}
+
+#headbar{
+background:url(../images/top_bg.jpg) repeat-x;
+height:24px;
+overflow:hidden;
+}
+
+#barmenu{
+float:right;
+width:325px;
+margin-right:-20px;
+line-height:21px;
+text-align:center;
+color:#fff;
+}
+
+#barmenu a{
+margin:0 5px;
+color:#fff;
+background:inherit;
+text-decoration:none;
+}
+
+#barmenu a:hover{
+text-decoration:underline;
+background:inherit;
+}
+
+.newtimesite{
+background-image:url(../images/page_down.png);
+background-repeat:no-repeat;
+padding-left:12px;
+}
+#mybank{
+float:left;
+width:180px;
+min-height:20px;
+height:20px;
+background:url(/per/gb/images/top_button.jpg);
+}
+
+#marquee{
+float:left;
+height:20px;
+padding-top:3px;
+padding-right:10px;
+padding-left:10px;
+}
+
+#masterid{
+float:left;
+margin-left:10px;
+width:680px;
+line-height:21px;
+vertical-align:middle;
+color:#ffffff;
+}
+#masterid a{
+  color:#ffffff;
+}
+.newtimesite{
+background-image:url(../images/page_down.png);
+background-repeat:no-repeat;
+padding-left:12px;
+}
+.newtimesiteback{
+background-image:url(../images/page_up.png);
+background-repeat:no-repeat;
+padding-left:12px;
+}

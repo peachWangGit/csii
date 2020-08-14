@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.csii.com.cn/schema/pe"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.csii.com.cn/schema/pe http://www.csii.com.cn/schema/pe/pe.xsd">
+
+    <chain id="chainForPublic">
+        <commands>
+            <ref>validationCommand</ref>
+            <ref>delegateCommand</ref>
+        </commands>
+    </chain>
+
+    <!-- Login Control Chain -->
+
+    <chain id="chainForLoginControl">
+        <commands>
+            <ref>validationCommand</ref>
+            <ref>loginControlCommand</ref>
+            <ref>delegateCommand</ref>
+        </commands>
+    </chain>
+
+    <!-- Role Control Chain -->
+    <chain id="chainForRoleControl">
+        <commands>
+            <ref>roleControlCommand</ref>
+            <ref>validationCommand</ref>
+            <ref>ruleCommand</ref>
+            <ref>delegateCommand</ref>
+        </commands>
+    </chain>
+
+    <chain id="chainForRoleControlTC">
+        <commands>
+            <ref>roleControlCommand</ref>
+            <ref>validationCommand</ref>
+            <ref>ruleCommand</ref>
+            <ref>delegateCommand</ref>
+        </commands>
+    </chain>
+
+    <chain id="chainForRoleControlTCP">
+        <commands>
+            <ref>phoneTokenControlCommand</ref>
+            <ref>validationCommand</ref>
+            <ref>ruleCommand</ref>
+            <ref>delegateCommand</ref>
+        </commands>
+    </chain>
+
+
+<!--     <command id="validationCommand" class="com.csii.pe.validation.StyleValidationCommand"/> -->
+   <command id="validationCommand" class="com.csii.pe.core.extend.validation.GreedyValidationCommand"/> 
+
+    <command id="ruleCommand" class="com.csii.pe.chain.command.RuleCommand"/>
+
+
+    <command id="delegateCommand" class="com.csii.pe.chain.command.DelegateCommand"/>
+
+    <command id="loginControlCommand" class="com.csii.pe.chain.command.AccessControlCommand">
+        <list name="policies">
+            <ref>duplicateLoginControlPolicy</ref>
+        </list>
+    </command>
+
+    <policy id="duplicateLoginControlPolicy" class="com.csii.pe.accesscontrol.DelayControlPolicy">
+        <ref name="uniqueIdResolver">uniqueUserIdResolver</ref>
+        <ref name="attackedResourceList">failureUserRegistry</ref>
+        <param name="shortDelayTime">5</param>
+        <param name="longDelayTime">60</param>
+        <param name="baseCounter">3</param>
+        <param name="warningCounter">1</param>
+        <!--<ref name="notification">notification</ref>-->
+    </policy>
+
+    <!-- 在该command中添加了设备绑定检查的验证 -->
+    <command id="roleControlCommand" class="com.csii.pe.chain.command.AccessControlCommand">
+        <list name="policies">
+            <ref>simpleRoleControlPolicy</ref>
+        </list>
+    </command>
+
+    <bean id="simpleRoleControlPolicy" class="com.csii.pe.accesscontrol.rc.SimpleRoleControlPolicy">
+        <ref name="roleResolver">transactionRoleResolver</ref>
+        <param name="rejectInvalidUser">true</param>
+        <!--<ref name="registerTellerManager">RegisterUserManager</ref>-->
+    </bean>
+
+
+
+    <!-- 图片验证码。不适用于手机 -->
+    <command id="tokenControlVercodeCommand" class="com.csii.pe.chain.command.AccessControlCommand">
+        <list name="policies">
+            <ref>tokenVercodeControlPolicy</ref>
+        </list>
+    </command>
+
+    <policy id="tokenVercodeControlPolicy" class="com.csii.pe.accesscontrol.token.TokenControlPolicy">
+        <ref name="tokenManager">vercodeTokenManager</ref>
+        <param name="messageKey">validation.input_mistake_token</param>
+        <param name="timeoutMessageKey">600</param>
+    </policy>
+
+    <bean id="vercodeTokenManager" class="com.csii.pe.accesscontrol.token.ResubmitTokenManager">
+        <param name="tokenName">_vTokenName</param>
+        <param name="tokenListName">_VDCTOKENLIST</param>
+        <param name="delayTime">600</param>
+        <param name="maxEntryNumber">3</param>
+        <param name="tokenLength">${vercodeTokenManager.tokenLength}</param>
+        <param name="ignoreCase">${vercodeTokenManager.ignoreCase}</param>
+    </bean>
+
+    <!-- 手机短信动态码验证-->
+    <command id="phoneTokenControlCommand" class="com.csii.pe.chain.command.AccessControlCommand">
+        <list name="policies">
+            <ref>phoneTokenControlPolicy</ref>
+        </list>
+    </command>
+
+    <policy id="phoneTokenControlPolicy" class="com.csii.pe.accesscontrol.token.TokenControlPolicy">
+        <ref name="tokenManager">phoneTokenManager</ref>
+        <param name="messageKey">validation.input_mistake_phone_token</param>
+        <param name="timeoutMessageKey">validation.token_exceed_phone_time</param>
+        <param name="dynamicPasswordMessageKey">validation.invalid_phone_dynamicPassword</param>
+    </policy>
+
+    <bean id="phoneTokenManager" class="com.csii.pe.accesscontrol.token.ResubmitTokenManager">
+        <param name="tokenName">_pTokenName</param>
+        <param name="tokenListName">_PTOKENLIST</param>
+        <param name="delayTime">120</param>
+        <param name="maxEntryNumber">1</param>
+        <param name="tokenLength">6</param>
+        <param name="chars">0123456789</param>
+    </bean>
+
+    <!--  用于防止重复提交 -->
+    <command id="tokenControlCommand" class="com.csii.pe.chain.command.AccessControlCommand">
+        <list name="policies">
+            <ref>resubmitTokenControlPolicy</ref>
+        </list>
+    </command>
+
+    <policy id="resubmitTokenControlPolicy" class="com.csii.pe.accesscontrol.token.TokenControlPolicy">
+        <ref name="tokenManager">resubmitTokenManager</ref>
+        <param name="messageKey">validation.resubmit_same_token</param>
+    </policy>
+
+    <bean id="resubmitTokenManager" class="com.csii.pe.accesscontrol.token.ResubmitTokenManager">
+        <param name="tokenName">_tokenName</param>
+        <param name="tokenListName">_DCTOKENLIST</param>
+        <param name="delayTime">600</param>
+        <param name="maxEntryNumber">3</param>
+        <param name="tokenLength">6</param>
+    </bean>
+
+
+</config>

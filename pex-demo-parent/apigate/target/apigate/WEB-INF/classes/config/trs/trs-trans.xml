@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.csii.com.cn/schema/pe" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.csii.com.cn/schema/pe http://www.csii.com.cn/schema/pe/pe.xsd">
+
+
+	<transaction id="bankInnerTransfer" template="publicQueryTemplate">
+		<description>
+		</description>
+
+		<actions>
+			<ref name="action">BankInnerTransferAction</ref>
+		</actions>
+		<!-- <channels> <channel type="http"> <param name="success">json,</param> 
+			</channel> </channels> -->
+	</transaction>
+	<action name="BankInnerTransferAction"
+		class="com.csii.demo.trans.action.BankInnerTransferAction" parent="BaseQueryAction">
+	</action>
+
+
+	<transaction id="testSim" template="publicQueryTemplate">
+		<description>
+		</description>
+		<actions>
+			<ref name="action">TestSimAction</ref>
+		</actions>
+	</transaction>
+	<action name="TestSimAction"
+		class="com.csii.demo.trans.action.TestSimAction" parent="BaseQueryAction">
+	</action>
+
+
+
+
+
+</config>

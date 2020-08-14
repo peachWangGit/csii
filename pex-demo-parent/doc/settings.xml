@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+	<!--<localRepository>E:\Maven\peDependencies</localRepository>-->
+	<localRepository>E:\Maven\m2\repository</localRepository>
+	<interactiveMode>true</interactiveMode>
+	<offline>false</offline>
+	<pluginGroups>
+		<pluginGroup>org.mortbay.jetty</pluginGroup>
+		<pluginGroup>org.jenkins-ci.tools</pluginGroup>
+	</pluginGroups>
+	<servers>
+		<server>
+			<id>csii-pe-0</id>
+			<username>csii</username>
+			<password>mycsii1601</password>
+		</server>
+		<server>
+			<id>csii-pe-1</id>
+			<username>csii</username>
+			<password>mycsii1601</password>
+		</server>
+	</servers>
+	<!-- <mirrors> <mirror> <id>alimaven</id> <name>aliyun maven</name> <url>http://maven.aliyun.com/nexus/content/groups/public</url> 
+		<mirrorOf>central</mirrorOf> </mirror> <mirror> <id>nexus</id> <mirrorOf>*</mirrorOf> 
+		<name>Nexus Mirror.</name> <url>http://118.242.36.102:35678/nexus/content/groups/public/</url> 
+		</mirror> <mirror> <id>repo1</id> <mirrorOf>central</mirrorOf> <name>Human 
+		Readable Name for this Mirror.</name> <url>http://repo1.maven.org/maven2/</url> 
+		</mirror> </mirrors> -->
+	<profiles>
+		<profile>
+			<id>development</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<repositories>	
+				<repository>
+					<id>alinexus</id>
+					<url>http://maven.aliyun.com/nexus/content/groups/public</url>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+				</repository>
+
+			<repository>
+					<id>csii-pe-0</id>
+					<!-- <url>http://111.206.110.34:1280/repository/internal</url>
+					<url>http://dev.csii.com.cn:1280/repository/internal</url> -->
+					<url>http://maven.csii.com.cn:1280/repository/internal</url>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+				</repository>
+				
+				<repository>
+					<id>csii-pe-1</id>
+					<url>http://47.94.122.94:8081/nexus/content/groups/public/</url>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+				</repository>
+
+				<repository>
+					<id>spring-snapshots</id>
+					<name>Spring Snapshots</name>
+					<!-- <url>https://repo.spring.io/libs-snapshot</url> -->
+					<url>https://repo.spring.io/snapshot</url>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+				</repository>
+
+				<repository>
+					<id>spring-releases</id>
+					<name>Spring Releases</name>
+					<url>https://repo.spring.io/release</url>
+					<snapshots>
+						<enabled>false</enabled>
+					</snapshots>
+				</repository>
+
+				<repository>
+					<id>spring-milestones</id>
+					<name>Spring Milestones</name>
+					<!-- <url>https://repo.spring.io/libs-milestone</url> -->
+					<url>https://repo.spring.io/milestone</url>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+				</repository>
+			</repositories>
+		</profile>
+	</profiles>
+	<activeProfiles>
+		<activeProfile>development</activeProfile>
+	</activeProfiles>
+</settings>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Group SYSTEM "packet.dtd">
+<Group name="Message" xmlHead="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;">
+	<Group name="Head">
+		<xmlTag tagName="_MCSJnlNo"> <!-- 整合平台流水号 -->
+			<String name="_RequestJnlNo"></String>
+		</xmlTag>
+		<xmlTag tagName="_MCSTimestamp"> <!-- 整合平台返回时间 -->
+			<!--Date name="_TransactionTimestamp" pattern="yyyy-MM-dd HH:mm:ss.S" / -->
+			<String name="_MCSTimestamp"></String>
+		</xmlTag>
+		<xmlTag tagName="_ResponseSystemId">
+			<String name="_ResponseSystemId">
+			</String>
+
+		</xmlTag>
+		<xmlTag tagName="_RejCode">
+			<String name="_ResponseRejCode"></String>
+		</xmlTag>
+		<xmlTag tagName="_RejMsg">
+			<String name="_ResponseRejMsg"></String>
+		</xmlTag>
+		<xmlTag tagName="_MCHJnlNo"> <!-- 渠道流水号 -->
+			<String name="_MCHJnlNo"></String>
+		</xmlTag>
+		<xmlTag tagName="_TransactionId"> <!-- 交易码 -->
+			<String name="_HostTransactionCode"></String>
+		</xmlTag>
+		<xmlTag tagName="_MCHTimestamp"> <!-- 渠道交易时间 -->
+			<!--Date name="_TransactionTimestamp" pattern="yyyy-MM-dd HH:mm:ss.S" / -->
+			<String name="_MCHTimestamp"></String>
+		</xmlTag>
+	</Group>
+	<Group name="Body">
+		<include keyName="_HostTransactionCode"></include>
+	</Group>
+</Group>
+
+

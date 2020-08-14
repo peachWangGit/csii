@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.csii.com.cn/schema/pe" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.csii.com.cn/schema/pe http://www.csii.com.cn/schema/pe/pe.xsd">
+
+
+	<transaction id="login" template="publicQueryTemplate">
+		<description>
+		</description>
+		<actions>
+			<ref name="action">UserLoginAction</ref>
+		</actions>
+	</transaction>
+
+	<action name="UserLoginAction" class="com.csii.demo.usr.action.UserLoginAction"
+		parent="BaseQueryAction">
+		<ref name="userDao">userDao</ref>
+	</action>
+	
+	
+	<transaction id="testTrs" template="publicQueryTemplate">
+		<description>
+		</description>
+		<actions>
+			<ref name="action">TestAction</ref>
+		</actions>
+	</transaction>
+
+	<action name="TestAction" class="com.csii.demo.usr.action.TestAction"
+		parent="BaseQueryAction">
+<!-- 		<ref name="testDao">testDao</ref> -->
+	</action>
+
+</config>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration>
+
+<configuration debug="false">
+
+	<!-- jmxConfigurator / -->
+
+
+	<conversionRule conversionWord="short"
+		converterClass="com.csii.pe.common.logging.ShortLoggerConverter" />
+
+	<conversionRule conversionWord="count"
+		converterClass="com.csii.pe.common.logging.CountingConverter" />
+
+	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] [%thread] [%logger{36}] [%X{transId}] [%X{transName}] - %m%n</Pattern>
+		</layout>
+		<encoding>UTF-8</encoding>
+	</appender>
+
+	<appender name="FILE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>/Users/liuzhq/tmp/eweb/log/ent/ewebLogFile.%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>100MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] [%thread] [%logger{36}]	[%X{transId}] [%X{transName}] - %m%n</Pattern>
+		</layout>
+		<encoding>UTF-8</encoding>
+	</appender>
+	<appender name="ERRFILE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>/Users/liuzhq/tmp/eweb/log/ent/ewebErrLogFile.%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>100MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] [%thread] [%logger{36}]	[%X{transId}] [%X{transName}] - %m%n</Pattern>
+		</layout>
+		<encoding>UTF-8</encoding>
+	</appender>
+	<appender name="CommunicationFILE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${log.base.dir}/${log.file.name}.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>100MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] [%logger{36}] - %m%n
+			</Pattern>
+		</layout>
+		<encoding>UTF-8</encoding>
+	</appender>
+	<!-- 负责打印登录通讯时间日志(单独文件记录) -->
+	<logger name="com.gdnybank.ebs.common.action.LoginAction"
+		additivity="false">
+		<level value="debug" />
+		<appender-ref ref="CONSOLE" />
+	</logger>
+	<!-- 主要负责打印SQL语句日志 -->
+	<logger name="java.sql" additivity="false">
+		<level value="debug" />
+		<appender-ref ref="CONSOLE" />
+	</logger>
+	<!-- 主要负责打印签名日志 -->
+	<logger name="com.csii.ibs.common.rule" additivity="false">
+		<level value="debug" />
+		<appender-ref ref="CONSOLE" />
+	</logger>
+	<logger name="com.csii.pe.common.security.command" additivity="false">
+		<level value="debug" />
+		<appender-ref ref="CONSOLE" />
+	</logger>
+	<!-- 主要打印格尔数字签名服务日志 -->
+	<logger name="com.gdnybank.ebs.common.cert.KoalDigitalSignatureValidator" additivity="false">
+		<level value="debug" />
+		<appender-ref ref="CONSOLE" />
+	</logger>		
+	<!-- 主要打印业务逻辑类日志 -->
+	<logger name="com.gdnybank.ebs" additivity="false">
+		<level value="debug" />
+		<appender-ref ref="CONSOLE" />
+	</logger>
+	<!-- 主要打印框架级HTTP请求日志 -->
+	<logger name="com.csii.pe.channel.http" additivity="false">
+		<level value="debug" />
+		<appender-ref ref="CONSOLE" />
+	</logger>
+	<!-- 主要打印错误信息日志(单独文件记录) -->
+	<logger name="com.gdnybank.ebs.channel.http.servlet.CustomMessageViewExceptionHandler" additivity="true">
+		<level value="debug" />
+		<appender-ref ref="ERRFILE" />
+	</logger>
+	<root>
+		<level value="INFO" />
+		<appender-ref ref="CONSOLE" />
+		<!-- <appender-ref ref="FILE" /> -->
+		
+	</root>
+
+</configuration>

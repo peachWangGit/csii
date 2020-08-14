@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" addBOMForNewFiles="with NO BOM">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/apigate" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/batch" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sim" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tools" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tools/utils" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/trans" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/trans/trans-api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/trans/trans-bean" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/trans/trans-dao" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/trans/trans-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/usr" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/usr/usr-api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/usr/usr-bean" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/usr/usr-dao" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/usr/usr-service" charset="UTF-8" />
+  </component>
+</project>

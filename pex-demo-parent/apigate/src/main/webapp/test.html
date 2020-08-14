@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+
+
+<html><!-- InstanceBegin template="/Templates/updateForm.dwt" codeOutsideHTMLIsLocked="true" -->
+
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+<script language="javascript" src="script.do"></script>
+<!-- InstanceBeginEditable name="script" -->
+<script language="javascript">
+function startup()
+{
+}
+
+function  doIt(clickObj)
+{
+  post2SRV('UserCifMgmtConfirm.do',clickObj.form,clickObj,'EEE');
+}
+
+function doXSS(clickObj)
+{
+	
+	var data = new Array(new Pair("Userseq", " 'alert'"));
+    postData2SRV("SentryXSSTest.do", PEGetPostData(data), "EEE");
+}
+
+
+function doSQL(clickObj)
+{
+	
+	var data = new Array(new Pair("Userseq", "=Select * From "));
+    postData2SRV("SentrySQLTest.do", PEGetPostData(data), "EEE");
+}
+
+
+function doConsumeCpuTime(clickObj){
+	 postData2SRV("SentryConsumeCpuTimeTest.do", null, "EEE");
+}
+
+
+function doConsumeTime(clickObj){
+	 postData2SRV("SentryConsumeTimeTest.do", null, "EEE");
+}
+
+
+function  goback()
+{
+    document.forms[0].action="yyy.do";
+	document.forms[0].submit();
+}
+</script>
+<!-- InstanceEndEditable -->
+</head>
+<body onLoad="startup()" >
+<div class="Title" >
+  <span class="mainTitle">
+  </span>
+  
+
+</div>
+<table width="90%" border="0" cellpadding="0" cellspacing="0" class="mainTable">
+<tr><td width="80%">
+<form name="form1" action="#" method="post" >
+<input type="hidden" id="_viewReferer" name="_viewReferer" value="sentry/SentryIndex" /> 
+<input type="hidden" name="CifName" value=""/>
+<!-- InstanceBeginEditable name="submitForm" -->
+
+	   <table width="100%" border="1" cellpadding="2" cellspacing="0" class="submitTable">
+          <tr align="right" valign="middle">
+            <td width="17%" height="23" nowrap class="tdTitle">XSS跨站脚本攻击测试 </td>
+            <td width="83%" align="left"  nowrap class="tdValue"><input type="button" name="doItButton"  value="测试" onClick="doXSS(this)"/></td>
+          </tr>
+		  <tr align="right" valign="middle">
+            <td width="17%" height="23" nowrap class="tdTitle">SQL注入攻击测试</td>
+            <td width="83%" align="left"  nowrap class="tdValue">
+			 <input type="button" name="doItButton"  value="测试" onClick="doSQL(this)"/>
+          </tr>
+		  <tr align="right" valign="middle">
+            <td width="17%" height="23" nowrap class="tdTitle">高CPU测试</td>
+            <td width="83%" align="left"  nowrap class="tdValue"><input type="button" name="doItButton"  value="提交" onClick="doConsumeCpuTime(this)"/></td>
+          </tr>
+
+          <tr align="right" valign="middle">
+            <td width="17%" height="23" nowrap class="tdTitle">长时间测试</td>
+            <td width="83%" align="left"  nowrap class="tdValue" >
+			 <input type="button" name="doItButton"  value="提交" onClick="doConsumeTime(this)"/>
+			</td>
+          </tr>
+
+
+  </table>
+<!-- InstanceEndEditable -->
+ <div class="errors" >
+   <span id="EEE"></span> </div>
+<div align="center">
+<!-- InstanceBeginEditable name="preButtons" -->
+<!-- InstanceEndEditable -->
+
+	  <input type="button" name="doItButton" class="submitButton" value="提交" onClick="doIt(this)">
+
+<!-- InstanceBeginEditable name="afterButtons" -->
+<!-- InstanceEndEditable --></div>
+</form>
+</td>
+</tr>
+</table>
+
+
+</body>
+<!-- InstanceEnd --></html>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapNode SYSTEM "packetutf8.dtd">
+<mapNode>
+	
+	<String name="default"></String>	
+    <Date name="java.sql.Date" pattern="yyyyMMdd" ></Date>
+
+<!-- 
+	<xmlTag tagName="amt">
+		<String name="Amount"></String>
+	</xmlTag>
+	 -->
+
+</mapNode>
+

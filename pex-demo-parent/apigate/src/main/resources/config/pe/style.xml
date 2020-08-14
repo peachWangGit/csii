@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.csii.com.cn/schema/pe"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://www.csii.com.cn/schema/pe http://www.csii.com.cn/schema/pe/pe.xsd">
+    <!-- 地址样式 -->
+	<style id="AddressStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="length">1,64</param>
+		</setting>
+	</style>
+	
+	<!-- 邮编样式 -->
+	<style id="ZipCodeStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="length">6</param>
+			<param name="pattern">^[0-9]{6}$</param>
+		</setting>
+		<messages>
+			<param name="pattern">validation.pattern_mismatch</param>
+		</messages>
+	</style>
+	
+		<!-- 电话样式(区号必输) -->
+	<style id="PhoneStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">^\d+([ -]\d+)*$</param>
+		</setting>
+	</style>
+	
+		<!-- 电子邮箱样式 -->
+	<style id="EmailStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="length">5,36</param>
+			<param name="pattern">^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$</param>
+		</setting>
+	</style>
+	
+		<!-- 手机号码样式 -->
+	<style id="MobilePhoneStyle">
+		<setting>
+			<param name="required">true</param>
+			<param name="pattern">^[0-9]{7,11}$</param>
+		</setting>
+	</style>
+	
+	<!-- 用户登录名验证 -->
+	<style id="UserIdStyle">
+		<setting>
+			<param name="required">true</param>
+			<param name="option">false</param>
+			<param name="pattern">^[a-zA-Z0-9\_]{6,14}$</param>
+		</setting>
+	</style>
+	<!-- 登录类型样式 -->
+	<style id="LoginTypeStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">^[A-Za-z0-9]{1}$</param>
+		</setting>
+	</style>
+	<style id="AcNoStyle">
+		<setting>
+			<param name="required">true</param>
+			<param name="option">false</param>
+			<param name="pattern">^[a-zA-Z0-9]{1,30}$</param>
+		</setting>
+	</style>
+	
+		<!-- 留言内容样式 -->
+	<style id="NoteContentStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="length">2,256</param>
+			<param name="pattern">^[A-Za-z0-9\u4E00-\u9FBB\u3400-\u4DBF\uF900-\uFAD9\u3000-\u303F\u2000-\u206F\uFF00-\uFFEF.。?？！!,，、；;：:'‘’“”"…\s]{2,256}$</param>
+		</setting>
+	</style>
+	
+</config>

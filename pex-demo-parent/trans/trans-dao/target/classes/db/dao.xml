@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spring:beans xmlns:spring="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo" 
+	xmlns="http://www.csii.com.cn/schema/pe" 
+	xmlns:srv="http://www.csii.com.cn/pe/services"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+	http://www.csii.com.cn/schema/pe http://www.csii.com.cn/schema/pe/pe.xsd
+	http://www.csii.com.cn/pe/services http://www.csii.com.cn/pe/services/impl.xsd
+	">
+
+    <bean id="transDao" class="com.csii.demo.trans.dao.impl.TransDaoImpl">
+    	<ref name="sqlMap">sqlMap</ref>
+    </bean>
+</spring:beans>

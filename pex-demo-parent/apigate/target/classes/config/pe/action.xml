@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.csii.com.cn/schema/pe"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.csii.com.cn/schema/pe http://www.csii.com.cn/schema/pe/pe.xsd">
+
+
+    <action id="BaseQueryAction" class="com.csii.ibs.action.IbsQueryAction">
+        <ref name="transportBean">transport</ref>
+    </action>
+
+    <!--
+        <action id="BaseTwoPhaseAction" class="com.csii.ibs.action.IbsTwoPhaseAction" >
+            <ref name="trsCodeResolver">hostTrsCodeResolver</ref>
+            <ref name="returnCodeValidator">hostReturnCodeValidator</ref>
+            <ref name="transportBean">TransformerTransport</ref>
+        </action>
+
+        -->
+
+    <action id="preSubmitJournal" class="com.csii.ibs.journal.PreSubmitJournal">
+<!--         <ref name="idFactory">idFactory</ref> -->
+        <param name="sql">common.insertTrsLog</param>
+    </action>
+
+    <action id="aftSubmitJournal" class="com.csii.ibs.journal.UpdateJournal">
+        <param name="sql">common.updateTrsLog</param>
+    </action>
+
+    <action id="UpdateAuthQueueAction" class="com.csii.ibs.workflow.queue.UpdateTrs2QueueAction"/>
+
+    <action id="ReadAuthQueueAction" class="com.csii.ibs.workflow.queue.RestoreTrsFromQueueAction"/>
+
+    <action id="SubmitAction" class="com.csii.ibs.workflow.queue.SubmitAction">
+        <param name="sql">AuthManager.submitrecord</param>
+    </action>
+
+    <action id="RejectAction" class="com.csii.ibs.workflow.queue.RejectAction">
+        <param name="sql">AuthManager.rejectrecord</param>
+    </action>
+
+    <action id="ReentryAction" class="com.csii.ibs.workflow.queue.ReentryAction">
+        <param name="sql">AuthManager.reentryrecord</param>
+    </action>
+
+    <action id="UpdateReentryAction" class="com.csii.ibs.workflow.queue.UpdateReentryAction">
+        <param name="deleteFlag">false</param>
+        <param name="sql">AuthManager.updateEntryTrans</param>
+        <list name="conditionList">
+            <param>_ReentryJnlNo</param>
+        </list>
+    </action>
+
+    <action id="WriteAuthQueueAction" class="com.csii.ibs.workflow.queue.SaveTrs2QueueAction">
+        <param name="sql">AuthManager.insertAuthQueue</param>
+    </action>
+
+
+    <bean id="hostTrsCodeResolver" class="com.csii.ibs.action.HostTrsCodeResolver">
+        <map name="map">
+        </map>
+    </bean>
+
+
+    <bean id="hostReturnCodeValidator" class="com.csii.ibs.action.RegExReturnCodeValidator">
+        <param name="condition">_RejCode==null || !(_RejCode.equals("000000")||_RejCode.equals("9000001"))</param>
+        <param name="keyName">_RejCode</param>
+        <param name="messageKeyName">_RejMsg</param>
+        <param name="errorKeyPrefix"></param>
+    </bean>
+</config>

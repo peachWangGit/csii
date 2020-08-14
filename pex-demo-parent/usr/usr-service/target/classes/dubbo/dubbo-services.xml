@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xmlns:service="http://www.csii.com.cn/pe/services"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+						http://www.csii.com.cn/pe/services http://www.csii.com.cn/pe/services/impl.xsd">
+						
+
+   
+   	<dubbo:service interface="com.csii.demo.usr.api.UserService" ref="UserService" protocol="dubbo"/>
+   	<dubbo:service interface="com.csii.demo.usr.api.TestService" ref="TestServiceProvider" protocol="dubbo"/>
+   	
+	<service:bridge id="UserService" interface="com.csii.demo.usr.api.UserService">
+		<service:mapping method="login" trsCode="login"/>
+	</service:bridge>
+	
+	<service:bridge id="TestServiceProvider" interface="com.csii.demo.usr.api.TestService">
+		<service:mapping method="test" trsCode="testTrs"/>
+	</service:bridge>
+ 	
+ 	
+</beans>

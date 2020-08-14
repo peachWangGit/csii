@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div id="showProperties"></div>
+</body>
+<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+<script type="text/javascript">
+	$.ajax({
+		url:"http://"+window.location.host+"/apigate/readPropertiesAction.do",
+		type:"GET",
+		dataType:"json",
+		success:function(data){
+			console.log("properties内容:"+data);
+			$("#showProperties").html("properties内容:"+data);
+		},
+		error:function(data){
+			console.log(data);
+		}
+	});
+</script>
+</html>

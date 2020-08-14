@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <import resource="classpath:job/dbtest.xml"/>
+
+    <import resource="classpath:db/dao.xml"/>
+
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property
+                name="locations"> <!-- PropertyPlaceholderConfigurer类中有个locations属性，接收的是一个数组，即我们可以在下面配好多个properties文件 -->
+            <array>
+                <value>classpath:application.properties</value>
+            </array>
+        </property>
+    </bean>
+
+
+    <bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource" destroy-method="close">
+        <property name="poolProperties" ref="poolProperties"/>
+    </bean>
+    <bean id="poolProperties" class="org.apache.tomcat.jdbc.pool.PoolProperties">
+        <property name="driverClassName" value="${db.driverClassName}"/>
+
+        <property name="url" value="${db.url}"/>
+        <property name="username" value="${db.username}"/>
+        <property name="password" value="${db.password}"/>
+        <property name="validationQuery" value="${db.validationQuery}"/>
+        <property name="maxActive" value="${db.maxActive}"/>
+        <property name="maxIdle" value="${db.maxIdle}"/>
+        <property name="minIdle" value="${db.minIdle}"/>
+        <property name="initialSize" value="${db.initialSize}"/>
+        <property name="testWhileIdle" value="${db.testWhileIdle}"/>
+        <property name="validationInterval" value="${db.validationInterval}"/>
+        <property name="removeAbandoned" value="${db.removeAbandoned}"/>
+        <property name="jdbcInterceptors"
+                  value="org.apache.tomcat.jdbc.pool.interceptor.ConnectionState;org.apache.tomcat.jdbc.pool.interceptor.StatementFinalizer"/>
+
+    </bean>
+
+    <bean id="transactionManager"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean name="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+        <property name="configLocation">
+            <value>classpath:db/sqlmap/sqlMapConfig.xml</value></property>
+    </bean>
+
+    <bean id="sqlMapExecutor" class="org.springframework.orm.ibatis.SqlMapClientTemplate">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="sqlMapClient" ref="sqlMapClient"/>
+
+    </bean>
+
+
+
+    <!-- 作业仓库 -->
+    <bean id="jobRepository" class="org.springframework.batch.core.repository.support.JobRepositoryFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="transactionManager" ref="transactionManager"/>
+        <property name="tablePrefix" value="BATCH_"/>
+    </bean>
+
+    <!-- 作业执行器 -->
+    <bean id="jobLauncher" class="org.springframework.batch.core.launch.support.SimpleJobLauncher">
+        <property name="jobRepository" ref="jobRepository" />
+    </bean>
+
+    <bean id="jobParameterBulider" class="org.springframework.batch.core.JobParametersBuilder"/>
+
+    <!-- 定时任务 开始 -->
+    <bean id="ledgerJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+
+
+        <property name="targetObject">
+            <!-- 定时执行的类 -->
+            <ref bean="quartzLedgerJob" />
+        </property>
+        <property name="targetMethod">
+            <!-- 定时执行的类方法 -->
+            <value>execute</value>
+        </property>
+    </bean>
+
+    <bean id="quartzLedgerJob" class="com.csii.demo.batch.QuartzLeader">
+        <property name="jobLauncher" ref="jobLauncher"/>
+        <property name="ledgerJob" ref="testjob"/>
+        <property name="jobParameterBulider" ref="jobParameterBulider"/>
+
+    </bean>
+
+
+    <bean id="ledgerCronTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean" >
+        <!-- 这里不可以直接在属性jobDetail中引用taskJob，因为他要求的是一个jobDetail类型的对象，所以我们得通过MethodInvokingJobDetailFactoryBean来转一下 -->
+        <property name="jobDetail" >
+            <ref bean="ledgerJobDetail" />
+        </property>
+        <!--在每天下午18点到下午18:59期间的每1分钟触发  -->
+        <!--在每天上午10点40分准时触发  -->
+        <property name="cronExpression" >
+            <!-- <value>0 * 15 * * ?</value> -->
+            <value> * 0/1 * * * ? * </value>
+        </property>
+
+    </bean>
+
+
+    <!-- 触发器工厂，将所有的定时任务都注入工厂-->
+  <!--  <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean" lazy-init="false">
+        &lt;!&ndash; 添加触发器 &ndash;&gt;
+        <property name="triggers">
+            <list>
+                &lt;!&ndash; 将上面定义的测试定时任务注入（可以定义多个定时任务，同时注入）&ndash;&gt;
+                <ref  bean="ledgerCronTrigger" />
+            </list>
+        </property>
+
+        <property name="quartzProperties">
+            <props>
+                &lt;!&ndash; 主要是这个参数 &ndash;&gt;
+                <prop key="org.quartz.scheduler.skipUpdateCheck">true</prop>
+            </props>
+        </property>
+
+    </bean>-->
+    <!-- 定时任务 结束 -->
+
+
+
+
+</beans>

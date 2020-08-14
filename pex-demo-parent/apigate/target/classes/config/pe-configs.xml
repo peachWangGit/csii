@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+
+<properties>
+    <comment>
+        PowerEngine Main Configuration
+    </comment>
+    <entry key="CurrentMode">Mode.demo</entry>
+	<entry key="Mode.demo">
+		classpath:/config/dubbo/*.xml,
+    	classpath:/config/trs/*.xml,
+    	classpath:/config/mode/dev/peconfig.xml
+	</entry>
+    <entry key="CommonConfig">
+        classpath:/config/pe/*.xml
+    </entry>
+
+</properties>

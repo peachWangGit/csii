@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.csii.com.cn/schema/pe"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.csii.com.cn/schema/pe http://www.csii.com.cn/schema/pe/pe.xsd">
+
+    <!--非权限校验模板-->
+    <template id="publicQueryTemplate" class="com.csii.pe.template.ExecutableSequenceTemplate" chain="emptyChain"/>
+
+
+
+
+
+</config>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE segment SYSTEM "packetutf8.dtd">
+<segment>
+	<xmlTag>
+		<String name="Id"></String>
+	</xmlTag>	
+	<xmlTag>
+	  <String name="TestParam"></String>
+	</xmlTag>
+</segment>

@@ -1,0 +1,34 @@
+<spring:beans xmlns:spring="http://www.springframework.org/schema/beans"
+	xmlns="http://www.csii.com.cn/schema/pe" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+       					   http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd
+       					   http://www.csii.com.cn/schema/pe	http://www.csii.com.cn/schema/pe/pe-1.0.xsd">
+
+	<config>
+		<transaction id="trSimHello" template="executableSequenceTemplate">
+			<description>
+				@funcName Demo交易
+				@trsName Demo交易
+				@author Y
+				@version 1.0
+				@remark
+				@fromPages
+			</description>
+			<actions>
+				<ref name="action">helloAction</ref>
+			</actions>
+		</transaction>
+		<!-- 交易Action -->
+		<action id="helloAction" class="com.csii.demo.sim.action.HelloSimAction" />
+		
+		
+		<transaction id="TestSim" template="executableSequenceTemplate">
+			<actions>
+				<ref name="action">TestSimAction</ref>
+			</actions>
+		</transaction>
+		<action id="TestSimAction" class="com.csii.demo.sim.action.TestSimAction" />
+	</config>
+
+</spring:beans>

@@ -1,0 +1,45 @@
+<assembly>
+    <id>release</id>
+    <!--<baseDirectory>ifp-cmt</baseDirectory>-->
+    <formats>
+        <format>dir</format>
+        <format>tar.gz</format>
+    </formats>
+    <fileSets>
+        <fileSet>
+            <directory>usr-service/src/main/resources</directory>
+            <outputDirectory>/conf</outputDirectory>
+            <excludes>
+                <exclude>META-INF/**</exclude>
+            </excludes>
+        </fileSet>
+        <fileSet>
+            <includes>
+                <include>bin/*</include>
+                <include>conf/*</include>
+            </includes>
+        </fileSet>
+    </fileSets>
+
+    <moduleSets>
+        <moduleSet>
+            <includes>
+                <include>com.csii.demo:usr-bean</include>
+                <include>com.csii.demo:usr-api</include>
+                <include>com.csii.demo:usr-dao</include>
+                <include>com.csii.demo:usr-service</include>
+            </includes>
+            <binaries>
+                <outputDirectory>lib/</outputDirectory>
+                <unpack>false</unpack>
+                <dependencySets>
+                    <dependencySet>
+                        <outputDirectory>lib/</outputDirectory>
+                    </dependencySet>
+                </dependencySets>
+            </binaries>
+        </moduleSet>
+    </moduleSets>
+
+
+</assembly>

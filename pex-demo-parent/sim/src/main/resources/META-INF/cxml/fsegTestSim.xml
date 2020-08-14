@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE segment SYSTEM "packetutf8.dtd">
+<!-- Read Only For Customization Team -->
+<segment>
+	<xmlTag>
+		<String name="ResultParam"></String>
+	</xmlTag>
+</segment>

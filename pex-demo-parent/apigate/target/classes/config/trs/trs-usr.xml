@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.csii.com.cn/schema/pe"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.csii.com.cn/schema/pe http://www.csii.com.cn/schema/pe/pe.xsd">
+
+
+    <transaction id="login" template="publicQueryTemplate">
+        <description></description>
+
+        <actions>
+            <ref name="action">UserLoginAction</ref>
+        </actions>
+       	<fields>
+			<field name="Username">UserIdStyle{option=false}</field>
+			<field name="LoginType">LoginTypeStyle{option=false}</field>
+		</fields>
+        <channels>
+            <channel type="http">
+                <param name="success">json,</param>
+            </channel>
+        </channels>
+    </transaction>
+
+    <action name="UserLoginAction" class="com.csii.demo.usr.action.UserLoginAction" parent="BaseQueryAction"/>
+    
+    <transaction id="getUserInfo" template="publicQueryTemplate">
+        <description>
+        </description>
+
+        <actions>
+            <ref name="action">getUserInfoAction</ref>
+        </actions>
+    </transaction>
+     <action name="getUserInfoAction" class="com.csii.demo.usr.action.GetUserInfoAction" parent="BaseQueryAction"/>
+    
+    <transaction id="testAction" template="publicQueryTemplate">
+        <description>
+        </description>
+
+        <actions>
+            <ref name="action">TestAction1</ref>
+        </actions>
+    </transaction>
+     <action name="TestAction1" class="com.csii.demo.usr.action.TestAction" parent="BaseQueryAction"/>
+    
+    
+   
+   
+    
+
+</config>

@@ -1,0 +1,31 @@
+<spring:beans xmlns:spring="http://www.springframework.org/schema/beans"
+	xmlns="http://www.csii.com.cn/schema/pe" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+       					   http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd
+       					   http://www.csii.com.cn/schema/pe	http://www.csii.com.cn/schema/pe/pe-1.0.xsd">
+
+	<config>
+		<!-- XMLTransPort 定义 -->
+		<transport id="TransformTransport"
+			class="com.csii.pe.service.comm.transport.TransformTransport">
+			<ref name="transformerFactory">CXMLTransformerFactory</ref>
+			<ref name="transport">Transport</ref>
+			<param name="formatName">cxmlPacketFormat</param>
+			<param name="parseName">pCXMLPacketParser</param>
+			<param name="debug">true</param>
+			<param name="dumpPath">/demo</param>
+			<ref name="headFormatter">CSHeadFormatter</ref>
+			<param name="singleLogFile">true</param> <!-- 在debug为true时,报文日志是否以单文件输出 -->
+		</transport>
+		<transport id="Transport"
+			class="com.csii.pe.service.comm.tcp.SimpleXMLTcpTransport">
+			<param name="host">127.0.0.1</param>
+			<param name="port">19001</param>
+			<param name="timeout">240000</param>
+			<param name="endTagName">Message</param>
+			<param name="uibs">true</param>
+		</transport>
+		<bean id="CSHeadFormatter" class="com.csii.demo.trans.service.transformer.CSHeadFormatter" />
+	</config>
+	</spring:beans>

@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.csii.demo</groupId>
+		<artifactId>pex-demo-parent</artifactId>
+		<version>1.0.0</version>
+	</parent>
+	<artifactId>sim</artifactId>
+	<name>sim</name>
+	<url>http://maven.apache.org</url>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>com.csii.pe</groupId>
+			<artifactId>pe-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.csii.pe</groupId>
+			<artifactId>pe-config</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.csii.pe</groupId>
+			<artifactId>pe-uibs</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.csii.pe</groupId>
+			<artifactId>pe-channel-stream</artifactId>
+			<version>${csii.pe.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+		</dependency>
+		
+		<!-- spring依赖 -->
+<!--             <dependency> -->
+<!--                 <groupId>org.springframework</groupId> -->
+<!--                 <artifactId>spring-webmvc</artifactId> -->
+<!--             </dependency> -->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-aop</artifactId>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-beans</artifactId>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context</artifactId>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-core</artifactId>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-expression</artifactId>
+            </dependency>
+        
+	</dependencies>
+	<build>
+	<plugins>
+		<plugin>
+			<groupId>org.codehaus.mojo</groupId>
+			<artifactId>appassembler-maven-plugin</artifactId>
+			<version>2.0.0</version>
+			<configuration>
+				<configurationDirectory>conf</configurationDirectory>
+				<configurationSourceDirectory>src/main/resources</configurationSourceDirectory>
+				<copyConfigurationDirectory>flase</copyConfigurationDirectory>
+				<includeConfigurationDirectoryInClasspath>true</includeConfigurationDirectoryInClasspath>
+				<assembleDirectory>${project.build.directory}/sim</assembleDirectory>
+				<extraJvmArguments>-Xms1024m</extraJvmArguments>
+				<binFileExtensions>
+					<unix>.sh</unix>
+				</binFileExtensions>
+				<platforms>
+					<platform>windows</platform>
+					<platform>unix</platform>
+				</platforms>
+				<repositoryName>lib</repositoryName>
+				<programs>
+					<program>
+						<mainClass>com.csii.demo.sim.bootstrap.TCPSimServer</mainClass>
+					</program>
+				</programs>
+			</configuration>
+			<executions>
+				<execution>
+					<phase>package</phase>
+					<goals>
+						<goal>assemble</goal>
+					</goals>
+				</execution>
+			</executions>
+		</plugin>
+	</plugins>
+	</build>
+</project>

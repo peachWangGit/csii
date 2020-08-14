@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.csii.com.cn/schema/pe"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.csii.com.cn/schema/pe http://www.csii.com.cn/schema/pe/pe.xsd">
+
+    <!--非权限校验模板-->
+    <template id="publicEmptyTemplate" class="com.csii.pe.template.EmptyTemplate" chain="chainForPublic"/>
+    <!--非权限校验查询模板-->
+    <template id="publicQueryTemplate" class="com.csii.pe.template.ExecutableSequenceTemplate" chain="chainForPublic"/>
+
+    <!--非权限校验序列模板-->
+    <template id="publicSequenceTemplate" class="com.csii.pe.template.ExecutableSequenceTemplate"
+              chain="chainForRoleControl">
+        <actions>
+            <ref name="action">Placeholder</ref>
+        </actions>
+    </template>
+    <!--权限校验空模板-->
+    <template id="emptyTemplate" class="com.csii.pe.template.EmptyTemplate" chain="chainForRoleControl"/>
+    <!--权限检验查询模板-->
+    <template id="queryTemplate" class="com.csii.pe.template.ExecutableSequenceTemplate" chain="chainForRoleControl">
+        <param name="transactionEnabled">false</param>
+        <actions>
+            <ref name="preAction">preSubmitJournal</ref>
+            <ref name="aftAction">aftSubmitJournal</ref>
+            <ref name="action">Placeholder</ref>
+        </actions>
+    </template>
+    <!--权限校验预加载模板-->
+    <template id="pageLoaderTemplate" class="com.csii.pe.template.PageLoaderSequenceTemplate"
+              chain="chainForRoleControl">
+        <actions>
+            <ref name="action">Placeholder</ref>
+        </actions>
+    </template>
+
+    <!-- 确认模版 -->
+    <template id="trsConfirmTemplate" class="com.csii.ibs.workflow.TrsConfirmTemplate" chain="chainForRoleControl">
+        <actions>
+            <ref name="action">Placeholder</ref>
+        </actions>
+    </template>
+    <!--两阶段模板-->
+    <template id="twoPhaseTrsTemplate" class="com.csii.ibs.workflow.TwoPhaseTrsTemplate" chain="chainForRoleControl">
+        <!-- 这里如果transactionEnabled设置为true，则整个submit方法会放在事物里面，因此改为false，由业务代码自己控制事物 -->
+        <param name="transactionEnabled">false</param>
+        <actions>
+            <ref name="preAction">preSubmitJournal</ref>
+            <ref name="aftAction">aftSubmitJournal</ref>
+            <ref name="action">Placeholder</ref>
+        </actions>
+    </template>
+    <!-- 授权模板 -->
+     <template id="entryTrsWorkflow" class="com.csii.ibs.workflow.EntryRecoverableTrsWorkflow" chain="chainForRoleControlTC">
+        <param name="transactionEnabled">true</param>
+        <ref name="authModel">authModel</ref>
+        <actions>
+            <ref name="preAction">preSubmitJournal</ref>
+            <ref name="aftAction">aftSubmitJournal</ref>
+            <ref name="action">Placeholder</ref>
+            <ref name="writeAuthQueueAction">WriteAuthQueueAction</ref>
+            <ref name="updateReentryAction">UpdateReentryAction</ref>
+        </actions>
+    </template>
+
+    <!--审核模板-->
+    <template id="authTrsWorkflow" class="com.csii.ibs.workflow.AuthRecoverableTrsWorkflow" chain="chainForRoleControl">
+        <ref name="authModel">authModel</ref>
+        <ref name="actionResolver">ActionResolver</ref>
+        <list name="mapping">
+            <param>_TrsStatus</param>
+        </list>
+        <list name="resultMapping">
+            <param>TransCode</param>
+        </list>
+        <actions>
+            <ref name="preAction">preSubmitJournal</ref>
+            <ref name="aftAction">aftSubmitJournal</ref>
+            <ref name="updateAuthQueueAction">UpdateAuthQueueAction</ref>
+            <ref name="readAuthQueueAction">ReadAuthQueueAction</ref>
+            <ref name="submitAction">SubmitAction</ref>
+            <ref name="rejectAction">RejectAction</ref>
+            <ref name="reentryAction">ReentryAction</ref>
+        </actions>
+    </template>
+
+    <bean id="authModel" class="com.csii.ibs.authmodel.verify.VerifyAuthModel" />
+
+
+    <bean id="ActionResolver" class="com.csii.ibs.workflow.DefaultActionResolver"/>
+
+
+
+
+
+</config>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+    "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="test">
+
+    <resultMap id="TestMap" class="com.csii.demo.usr.bean.Test">
+        <result property="id" column="id" javaType="java.lang.Integer"/>
+        <result property="testParam" column="testParam" javaType="java.lang.String"/>
+    </resultMap>
+
+	<select id="queryTest" parameterClass="com.csii.demo.usr.bean.Test" resultMap="TestMap"  >
+	  select id,testParam
+	  from test
+	  where id=#id#
+	  and testParam=#testParam#
+	</select>
+</sqlMap>

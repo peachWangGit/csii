@@ -1,0 +1,98 @@
+<spring:beans xmlns:spring="http://www.springframework.org/schema/beans"
+	xmlns="http://www.csii.com.cn/schema/pe" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+       					   http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd
+       					   http://www.csii.com.cn/schema/pe	http://www.csii.com.cn/schema/pe/pe-1.0.xsd">
+
+	<config>
+
+		<messageSource>
+			<param name="basenames">classpath:/META-INF/msg/msg</param>
+			<param name="cacheSeconds">10</param>
+			<param name="fallbackToSystemLocale">false</param>
+			<param name="defaultEncoding">UTF-8</param>
+		</messageSource>
+
+		<bean id="TcpServer" class="com.csii.pe.service.comm.tcp.TcpServer">
+			<param name="id">${TcpServer.id}</param>
+			<param name="name">${TcpServer.name}</param>
+
+			<param name="port">${TcpServer.port}</param>
+			<param name="socketTimeout">0</param>
+			<param name="reuseAddress">true</param>
+			<!-- param name="clientAuth">true</param -->
+			<ref name="executor">threadPool</ref>
+			<ref name="handlerMapping">handlerMapping</ref>
+
+			<!--ref name="eventDispatcher">srvhb.EventDispatcher</ref -->
+
+			<param name="period">1000</param>
+			<param name="eventId">20001</param>
+		</bean>
+
+		<executor id="threadPool">
+			<param name="name">${threadPool.name}</param>
+			<param name="initSize">${threadPool.initSize}</param>
+			<param name="maxSize">${threadPool.maxSize}</param>
+			<param name="minSize">${threadPool.minSize}</param>
+			<param name="queueSize">${threadPool.queueSize}</param>
+			<param name="keepAliveTime">${threadPool.keepAliveTime}</param>
+		</executor>
+
+		<handlerMapping id="handlerMapping">
+			<handlers>
+				<ref name="*">serverHandler</ref>
+			</handlers>
+		</handlerMapping>
+
+
+
+		<handler id="serverHandler" class="com.csii.pe.channel.stream.tcp.SimpleXMLHandler">
+			<ref name="transformerFactory">TransformerFactory</ref>
+			<ref name="coreController">.coreController</ref>
+			<ref name="identityResolver">transactionIdResolver</ref>
+			<ref name="parserResolver">parserResolver</ref>
+			<param name="defaultFormat">InboundPacketRes</param>
+			<param name="defaultErrorFormat">InboundPacketResError</param>
+			<param name="debug">false</param>
+			<param name="dumpPath">${serverHandler.dumpPath}</param>
+			<!-- <param name="singleLogFile">${serverHandler.singleLogFile}</param> -->
+
+			<!-- <ref name="messageCodeMapping">messageCodeMapping</ref> <param name="maxErrorMessageLength">${icsxml.serverHandler.maxErrorMessageLength}</param> 
+				<param name="errorMessageEncoding">${icsxml.serverHandler.errorMessageEncoding}</param> 
+				<param name="defaultMappingCode">${icsxml.serverHandler.defaultMappingCode}</param> -->
+
+			<param name="endTagName">${serverHandler.endTagName}</param>
+		</handler>
+
+
+		
+
+
+		<bean id="transactionIdResolver" class="com.csii.pe.channel.stream.TransactionIdResolver">
+			<param name="idParameterName">_TransactionId</param>
+		</bean>
+
+
+		<bean id="parserResolver"
+			class="com.csii.pe.channel.stream.ChannelAttributeParserResolver">
+			<param name="key">tcpchannel.localport</param>
+			<param name="defaultParser">xmlPacketParser</param>
+			<map name="mapping">
+			</map>
+		</bean>
+
+
+		<coreController id="coreController"
+			class="com.csii.pe.core.CoreControllerImpl">
+			<ref name="loggingInterceptor">loggingInterceptor</ref>
+		</coreController>
+
+		<bean id="loggingInterceptor" class="com.csii.pe.core.LoggingInterceptor">
+			<param name="loggingFields">AcNo=account</param>
+		</bean>
+
+	</config>
+
+</spring:beans>

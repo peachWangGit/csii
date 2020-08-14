@@ -1,0 +1,261 @@
+/* CSS Document */
+
+/***********************************************/
+/* HTML index                      */
+/***********************************************/ 
+
+
+.no{
+	display: none;
+}
+
+
+#nav {
+ padding-top:4px;
+ padding-bottom:3px;
+ list-style-type: none;
+ text-align:left;
+ margin-top:-3px;
+    /*定义整个ul菜单的行高和背景色*/
+}
+#nav li:hover ul {
+ left: auto;
+}
+#nav li.sfhover ul {
+ left: auto;
+}
+#content {
+ clear: left; 
+}
+
+.arrow {
+font-SIZE: 7pt; 
+CURSOR: hand; 
+font-FAMILY: Webdings; 
+color: #ffffff; 
+}
+
+
+.Point{
+width:13px;
+background-color:#839BD4;
+}
+/***********************************************/
+/* HTML tag styles                             */
+/***********************************************/ 
+* { font-size: 12px '宋体'，Arial, Helvetica, sans-serif;}
+
+body { margin:0; padding:0;}
+
+body,td,th {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.helpbg
+{
+background-color:#DDECFE;
+font-size: 12px
+}
+#nav ul{
+border-bottom:1px solid #003366;
+margin:0;
+padding:0;
+padding-bottom:10px;
+margin-bottom:10px;
+
+}
+#nav ul.collapsed {
+	display: none;
+	
+	padding-bottom:10px;
+	margin-bottom:10px;
+ 
+}
+#nav ul.expanded {
+
+
+}
+
+.collapsed {
+	display: none;
+	padding-top:-5px;
+	padding-bottom:-10px;
+	margin-bottom:-10px;
+	
+ }
+.expanded {
+	padding-top:-5px;
+	padding-bottom:-10px;
+	margin-bottom:-10px;
+
+}
+
+.bg{
+	background:url(../images/help_bg.jpg)  no-repeat;
+	background-color:#4B7BC9;
+	font-size: 12px;
+}
+
+.help01{
+background-color:#DDECFE;
+
+padding-top:5px;
+padding-bottom:5px;
+padding-left:5px;
+padding-right:5px;
+font-size: 12px;
+LINE-HEIGHT: 14px;
+}
+
+.help_main{
+font-size: 13px;
+LINE-HEIGHT: 16px;
+margin-top:5px
+}
+/***************************/
+ h1{
+ 	margin:0px 0px 0px 5px;
+	padding:0px;
+	padding-left:25px;
+	font-size:14px;  
+	color:#000000;
+	font-weight:bold;
+}
+
+ h2{
+ 	margin:0px 0px 0px 0px;
+	padding:0px;
+	padding-top:9px;
+	padding-left:10px;
+	font-size:12px;  
+	color:#000000;
+	font-weight:bold;
+	
+}
+h3{
+	font-size:17px; 
+	margin:0px 0px 0px 5px;
+	padding:0px;
+	margin-top:5px
+	color:#000000;
+	font-weight:bold;
+	display:none;
+}
+.story{
+	clear: both;
+	padding: 10px 20px 0px 5px;
+	font-size: 100%;
+}
+
+p{
+	padding: 0px 10px 0px 0px;
+	text-indent:2em;
+	font-size: 13px;
+	
+}
+
+
+hr{
+	text-align:center;
+	height:1px;
+	width:98%;
+	color:#B1C9F9;
+	margin:5px;
+}
+
+.specail{
+color:#E33539;
+}
+
+
+a{
+	color: #003DB2;
+
+	text-decoration: none;
+}
+
+a:link{
+	color: #003DB2;
+	text-decoration: none;
+}
+
+a:visited{
+	color: #003DB2;
+	text-decoration: none;
+}
+
+a:hover{
+	color: #003DB2;
+	text-decoration: underline;
+}
+
+.meun{
+background-color:#839BD4;
+width:200px;
+height:15px;
+color:#FFFFFF;
+padding-top:3px;
+padding-left:5px;
+font-weight:bold;
+border-bottom:1px solid #ffffff;
+
+}
+
+
+.meun01{
+	padding: 3px 0px 0px 5px;
+
+}
+.meun01 a{
+	color: #000000;
+    font-size:13px;
+	padding-top:0px;
+	text-decoration: none;
+}
+
+.meun01 a:link{
+	color: #000000;
+	text-decoration: none;
+}
+
+.meun01 a:visited{
+	color: #000000;
+	text-decoration: none;
+}
+
+.meun01 a:hover{
+	color: #000000;
+	text-decoration: underline;
+}
+
+
+.m{
+	PADDING-RIGHT: 0px; 
+	PADDING-LEFT: 0px; 
+	LIST-STYLE-IMAGE: url(../images/help.jpg); 
+	PADDING-BOTTOM: 0px; 
+	MARGIN: -15px 0px -20px 9px; 
+	PADDING-TOP: 0px; 
+	LIST-STYLE-TYPE: none
+}
+.m LI {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 1px; MARGIN: 0px; PADDING-TOP: 1px
+}
+.m LI A {
+	LEFT: 0px; POSITION: relative; TOP: 0px;PADDING-TOP: 0px
+}
+.book1{
+	border:0px
+	padding-top:10px;
+	
+}
+.a02 {
+	background:url(../images/help_book.jpg) no-repeat;
+}
+.a01{
+	background:url(../images/book.jpg) no-repeat;
+}
+.litthelp{
+	
+	background:url('../images/i_help.gif') no-repeat;
+}

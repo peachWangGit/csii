@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration>
+
+<configuration debug="false">
+	<jmxConfigurator />
+	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+		<layout class="ch.qos.logback.classic.PatternLayout">
+<!--			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] %logger %X{sessionId} %X{transId} %X{transName} %X{userId} %m%n</pattern>-->
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level  %logger %X{sessionId} %X{transId} %X{transName} %X{userId} %m%n</pattern>
+		</layout>
+	</appender>
+	<conversionRule conversionWord="short" converterClass="com.csii.pe.common.logging.ShortLoggerConverter" />
+
+	<conversionRule conversionWord="count" converterClass="com.csii.pe.common.logging.CountingConverter" />
+	
+	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${log.base.dir}/${log.file.name}.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        		<maxFileSize>102400kb</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS}  [%thread] %-5level %logger %X{sessionId} %X{transId} %X{transName} %X{userId} %m%n</pattern>
+		</layout>
+	</appender>
+
+	<logger name="org.springframework" additivity="false">
+		<level value="debug" />
+		<appender-ref ref="FILE" />
+		<appender-ref ref="CONSOLE" />
+	</logger>
+
+	<logger name="java.sql" additivity="false">
+		<level value="debug" />
+		<appender-ref ref="FILE" />
+		<appender-ref ref="CONSOLE" />
+	</logger>
+
+	<logger name="org.apache.zookeeper.ClientCnxn" additivity="false">
+		<level value="info" />
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="FILE" />
+	</logger>
+	<logger name="com.alibaba.dubbo" additivity="false">
+		<level value="debug" />
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="FILE" />
+	</logger>
+	
+	<root>
+		<level value="debug" />
+		<appender-ref ref="CONSOLE" />
+	</root>
+
+</configuration>

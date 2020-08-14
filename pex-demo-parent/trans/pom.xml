@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.csii.demo</groupId>
+		<artifactId>pex-demo-parent</artifactId>
+		<version>1.0.0</version>
+	</parent>
+	<artifactId>trans</artifactId>
+	<name>trans</name>
+	<url>http://maven.apache.org</url>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+	<packaging>pom</packaging>
+	<modules>
+		<module>trans-api</module>
+		<module>trans-bean</module>
+		<module>trans-dao</module>
+		<module>trans-service</module>
+	</modules>
+
+	 <build>
+        <extensions>
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-ssh</artifactId>
+                <version>2.10</version>
+            </extension>
+        </extensions>
+        <plugins>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.6</version>
+                <configuration>
+                    <finalName>trans-service</finalName>
+                    <descriptors>
+                        <descriptor>assembly-release.xml</descriptor>
+                    </descriptors>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>2.10</version>
+            </plugin>
+
+            <plugin>
+                <!--使用方式：mvn wagon:upload-single wagon:sshexec-->
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>wagon-maven-plugin</artifactId>
+                <version>1.0</version>
+                <configuration>
+                    <serverId>DEMOServer</serverId>
+                    <!-- 需要部署的文件 -->
+                    <fromFile>target/usr-service-release.tar.gz</fromFile>
+                    <!-- 部署目录 -->
+                    <url>scp://root@192.168.1.45/opt</url>
+                    <commands>
+                        <!-- 停止java进程 -->
+                        <command>pkill -f java</command>
+                        <!-- 删除之前解压后的目录 -->
+                        <command>rm -rf /opt/usr-service</command>
+                        <!-- 解压目录 -->
+                        <command>tar -zvxf /opt/usr-service-release.tar.gz -C /opt/</command>
+                        <!--赋权限-->
+                        <!--<command>chmod +x /opt/usr-service/bin/start.sh</command>-->
+                        <!--启动应用-->
+                        <command>sh /opt/usr-service/bin/start.sh</command>
+                    </commands>
+                    <displayCommandOutputs>true</displayCommandOutputs>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

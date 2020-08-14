@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.csii.com.cn/schema/pe"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.csii.com.cn/schema/pe http://www.csii.com.cn/schema/pe/pe.xsd">
+
+    <!-- begin of Event Processing -->
+
+    <transformerFactory id="eventTransformerFactory" class="com.csii.pe.transform.TransformerFactory">
+        <param name="path">/extern/</param>
+    </transformerFactory>
+
+
+    <server id="eventDispatcher" class="com.csii.pe.service.event.EventDispatcherImpl" init-method="start"
+            destroy-method="shutdown">
+        <param name="name">eventDispatcher</param>
+        <ref name="executor">eventThreadPool</ref>
+    </server>
+
+    <executor id="eventThreadPool">
+        <param name="name">Event-ThreadPool</param>
+        <param name="initSize">2</param>
+        <param name="maxSize">2</param>
+        <param name="minSize">2</param>
+        <param name="queueSize">500</param>
+        <param name="keepAliveTime">300</param>
+    </executor>
+
+
+    <bean id="remoteEventAgent" class="com.csii.pe.service.event.support.RemoteEventAgent">
+        <param name="id">ponlineuser,pblacklist</param>
+        <ref name="eventDispatcher">eventDispatcher</ref>
+        <ref name="transport">udpTransport</ref>
+        <ref name="transformerFactory">eventTransformerFactory</ref>
+        <param name="format">externAlias</param>
+    </bean>
+
+    <transport id="udpTransport" class="com.csii.pe.service.comm.udp.UDPTransport">
+        <param name="host">${event.udpTransport.address}</param>
+        <param name="port">${event.udpTransport.port}</param>
+    </transport>
+
+
+    <bean id="UIBSRemoteEventAgent" class="com.csii.pe.service.event.support.SimpleRemoteEventAgent">
+        <param name="id">permonitor</param>
+        <ref name="eventDispatcher">eventDispatcher</ref>
+        <ref name="transport">${UIBSRemoteEventAgent.transport}</ref>
+    </bean>
+
+    <transport id="dummyTransport" class="com.csii.uibs.DummyTransport">
+    </transport>
+
+    <transport id="eventTransport" class="com.csii.uibs.EventTransport">
+        <ref name="transport">udpTransport</ref>
+        <ref name="transformerFactory">eventTransformerFactory</ref>
+        <param name="format">externAlias</param>
+    </transport>
+
+    <transport id="eventTransportForMonitor" class="com.csii.uibs.EventTransport">
+        <ref name="transport">udpTransportForMonitor</ref>
+        <ref name="transformerFactory">eventTransformerFactory</ref>
+        <param name="format">externAlias</param>
+    </transport>
+
+    <transport id="udpTransportForMonitor" class="com.csii.pe.service.comm.udp.UDPTransport">
+        <param name="host">${event.udpTransportForMoniot.address}</param>
+        <param name="port">${event.udpTransportForMoniot.port}</param>
+    </transport>
+    <!-- end of event processing -->
+
+</config>

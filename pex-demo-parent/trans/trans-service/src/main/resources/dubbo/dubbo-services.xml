@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xmlns:service="http://www.csii.com.cn/pe/services"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+						http://www.csii.com.cn/pe/services http://www.csii.com.cn/pe/services/impl.xsd">
+						
+
+   
+   	<dubbo:service interface="com.csii.demo.trans.api.TransService" ref="TransService"  protocol="dubbo" />
+   	<dubbo:service interface="com.csii.demo.query.api.QueryJnlService" ref="QueryJnlService"  protocol="dubbo" />
+   	<dubbo:service interface="com.csii.demo.query.api.TestService" ref="TestService"  protocol="dubbo" />
+   	<dubbo:service interface="com.csii.demo.trans.api.TestSimService" ref="TestSimService"  protocol="dubbo" />
+   	
+	<service:bridge id="TransService" interface="com.csii.demo.trans.api.TransService">
+		<service:mapping method="bankInnerTransfer" trsCode="bankInnerTransfer"/>
+	</service:bridge>
+	
+	<service:bridge id="QueryJnlService" interface="com.csii.demo.query.api.QueryJnlService">
+		<service:mapping method="query" trsCode="queryJnl"/>
+	</service:bridge>
+ 	  
+ 	<service:bridge id="TestService" interface="com.csii.demo.query.api.TestService">
+		<service:mapping method="query" trsCode="test"/>
+	</service:bridge>
+	
+ 	<service:bridge id="TestSimService" interface="com.csii.demo.trans.api.TestSimService">
+		<service:mapping method="testSim" trsCode="testSim"/>
+	</service:bridge>
+ 	
+</beans>

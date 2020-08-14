@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.csii.com.cn/schema/pe" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.csii.com.cn/schema/pe http://www.csii.com.cn/schema/pe/pe.xsd">
+
+	<transaction id="queryJnl" template="publicQueryTemplate">
+		<description>
+		</description>
+		<actions>
+			<ref name="action">queryJnlAction</ref>
+		</actions>
+	</transaction>
+	<action name="queryJnlAction" class="com.csii.demo.trans.action.QueryJnlAction"
+		parent="BaseQueryAction" />
+		
+    <transaction id="test" template="publicQueryTemplate">
+		<description>
+		</description>
+		<actions>
+			<ref name="action">testAction</ref>
+		</actions>
+	</transaction>
+	<action name="testAction" class="com.csii.demo.trans.action.TestAction"
+		parent="BaseQueryAction" />
+		
+	 <transaction id="readPropertiesAction" template="publicQueryTemplate">
+		<description>读取welcome.properties</description>
+		<actions>
+			<ref name="action">ReadPropertiesAction</ref>
+		</actions>
+	</transaction>
+	<action name="ReadPropertiesAction" class="com.csii.demo.usr.action.ReadPropertiesAction"
+		parent="BaseQueryAction" />
+
+</config>

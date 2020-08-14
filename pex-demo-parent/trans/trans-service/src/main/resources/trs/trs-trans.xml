@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.csii.com.cn/schema/pe" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.csii.com.cn/schema/pe http://www.csii.com.cn/schema/pe/pe.xsd">
+
+
+	<transaction id="bankInnerTransfer" template="publicQueryTemplate">
+		<description>
+		</description>
+		<actions>
+			<ref name="action">bankInnerTransferAction</ref>
+		</actions>
+	</transaction>
+
+	<action name="bankInnerTransferAction" class="com.csii.demo.trans.service.BankInnerTransferAction">
+	<ref name="transport">TransformTransport</ref>
+
+	</action>
+   
+   
+   <transaction id="queryJnl" template="publicQueryTemplate">
+		<description>
+		</description>
+		<actions>
+			<ref name="action">queryJnlAction</ref>
+		</actions>
+	</transaction>
+	
+    <action name="queryJnlAction" class="com.csii.demo.query.service.QueryJnlServiceImpl">
+		<ref name="transDao">transDao</ref>
+	</action>
+
+     <transaction id="test" template="publicQueryTemplate">
+		<description>
+		</description>
+		<actions>
+			<ref name="action">testAction</ref>
+		</actions>
+	</transaction>
+     
+     <action name="testAction" class="com.csii.demo.query.service.TestAction">
+<!-- 		<ref name="transDao">transDao</ref> -->
+	</action>
+	
+	
+     <transaction id="testSim" template="publicQueryTemplate">
+		<description>
+		</description>
+		<actions>
+			<ref name="action">TestSimAction</ref>
+		</actions>
+	</transaction>
+     
+     <action name="TestSimAction" class="com.csii.demo.trans.service.TestSimAction">
+     	<ref name="transport">TransformTransport</ref>
+	</action>
+</config>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xmlns:service="http://www.csii.com.cn/pe/services" xmlns:pe="http://www.csii.com.cn/schema/pe"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+	http://www.csii.com.cn/schema/pe http://www.csii.com.cn/schema/pe/pe.xsd
+	http://www.csii.com.cn/pe/services http://www.csii.com.cn/pe/services/impl.xsd">
+	<dubbo:reference id="UserService" interface="com.csii.demo.usr.api.UserService" timeout="10000" check="false"/>
+	<dubbo:reference id="TransService" interface="com.csii.demo.trans.api.TransService" timeout="10000" check="false" retries="0"/>
+	<dubbo:reference id="QueryJnlService" interface="com.csii.demo.query.api.QueryJnlService" timeout="10000" check="false"/>
+	<dubbo:reference id="TestService" interface="com.csii.demo.query.api.TestService" timeout="10000" check="false"/>
+	<dubbo:reference id="TestServiceProvider" interface="com.csii.demo.usr.api.TestService" timeout="10000" check="false"/>
+	<dubbo:reference id="TestSimService" interface="com.csii.demo.trans.api.TestSimService" timeout="10000" check="false"/>
+	
+	<service:transport trsCodeName="_HostTransactionCode" id="transport">
+		<service:mapping trsCode="login" method="UserService:login" />
+		<service:mapping trsCode="bankInnerTransfer" method="TransService:bankInnerTransfer" />
+		<service:mapping trsCode="queryJnl" method="QueryJnlService:query" />
+		<service:mapping trsCode="test" method="TestService:query" />
+		<service:mapping trsCode="test2" method="TestServiceProvider:test" />
+		<service:mapping trsCode="testSim" method="TestSimService:testSim" />
+	</service:transport>
+</beans>
