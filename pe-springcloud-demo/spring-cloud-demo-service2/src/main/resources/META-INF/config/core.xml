@@ -1,0 +1,28 @@
+<spring:beans xmlns:spring="http://www.springframework.org/schema/beans"
+	xmlns="http://www.csii.com.cn/schema/pe" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+       					   http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd
+       					   http://www.csii.com.cn/schema/pe	http://www.csii.com.cn/schema/pe/pe-1.0.xsd">
+
+<config>
+	<!-- Controller that creates Context and calls CoreController -->
+	<coreController id="MycoreController" class="com.csii.pe.core.CoreControllerImpl">
+		<ref name="loggingInterceptor">loggingInterceptor</ref>
+	</coreController>
+	
+	<bean id="coreController" class="com.csii.pe.channel.http.SecurityCoreController">
+	    <ref name="coreController">MycoreController</ref>
+	    <param name="logLevel">2</param>
+	</bean>
+
+	<bean id="loggingInterceptor" class="com.csii.pe.core.LoggingInterceptor">
+		<param name="loggingFields">AcNo=account</param>
+	</bean>
+	
+	<messageSource>
+		<param name="fileEncodings">utf-8</param>
+		<param name="basenames">classpath:/META-INF/msg/error,classpath:/META-INF/msg/error2</param>
+	</messageSource>
+</config>
+</spring:beans>

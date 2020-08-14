@@ -1,0 +1,1452 @@
+<spring:beans xmlns:spring="http://www.springframework.org/schema/beans"
+	xmlns="http://www.csii.com.cn/schema/pe" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+       					   http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd
+       					   http://www.csii.com.cn/schema/pe	http://www.csii.com.cn/schema/pe/pe-1.0.xsd">
+
+<config>
+
+	<!-- 个人客户号顺序号样式 -->
+	<style id="CifSeqStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- 用户顺序号样式 -->
+	<style id="UserSeqStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- 用户登录账号样式 -->
+	<style id="UserIdStyle">
+		<setting>
+			<param name="ruleFilter">Y</param>
+			<param name="ruleRequired">true</param>
+			<param name="rulePattern">^(?=.*?[a-zA-Z]+)(?=.*?\d+)[a-zA-Z0-9]{6,12}$</param>
+		</setting>
+	</style>
+
+	<!-- 密码样式 -->
+	<style id="PasswordStyle">
+		<setting>
+			<param name="ruleFilter">Y</param>
+			<param name="option">false</param>
+			<param name="pin">none</param>
+			<param name="rulePattern">^[a-zA-Z0-9]{6,12}$</param>
+		</setting>
+	</style>
+
+	<!-- 用户名称样式 -->
+	<style id="UserNameStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">^[!-~]{1,20}$</param>
+		</setting>
+	</style>
+
+	<!-- 账户状态样式 -->
+	<style id="AcStateStyle">
+		<setting>
+
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- 用户状态样式 -->
+	<style id="UserStateStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- 银行顺序号样式 -->
+	<style id="BankSeq">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- 分行序号样式 -->
+	<style id="BranchSeqStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- 银行账户类型样式 -->
+	<style id="BankAcTypeStyle">
+		<setting>
+			<param name="ruleRequired">true</param>
+		</setting>
+	</style>
+
+	<!-- 属性名称样式 -->
+	<style id="AttrNameStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- 属性值样式 -->
+	<style id="AttrValueStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- 网点序号样式 -->
+	<style id="DeptSeqStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- 网点代码样式 -->
+	<style id="DeptIdStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- 产品代码样式 -->
+	<style id="PrdIdStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- 账户类型样式 -->
+	<style id="AcTypeStyle">
+		<setting>
+			<param name="ruleRequired">true</param>
+		</setting>
+	</style>
+
+	<!-- 货币样式 -->
+	<style id="CurrencyStyle">
+		<setting>
+		</setting>
+	</style>
+
+	<!-- 银行编码样式 -->
+	<style id="BankIdStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">^[0-9]{3}$</param>
+		</setting>
+	</style>
+	
+	<!-- 银行编码样式 -->
+	<style id="CMBCBankIdStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- 账户权限样式 -->
+	<style id="AcPermitStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- 账号样式(任何账号) -->
+	<style id="AcNoStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="rulePattern">^[a-zA-Z0-9]{1,30}$</param>
+		</setting>
+	</style>
+
+	<!-- 账户名样式 -->
+	<style id="AcNameStyle">
+		<setting>
+			<param name="ruleFilter">Y</param>
+			<param name="option">false</param>
+			<param name="rulePattern">^[A-Za-z0-9\u4E00-\u9FBB\u3400-\u4DBF\uF900-\uFAD9\u3000-\u303F\u2000-\u206F\uFF00-\uFFEF]{1,60}$</param>
+		</setting>
+	</style>
+
+	<!-- 账户别名样式 -->
+	<style id="AcAliasStyle">
+		<setting>
+			<param name="ruleFilter">Y</param>
+			<param name="option">false</param>
+			<param name="rulePattern">^[A-Za-z0-9\u4E00-\u9FBB\u3400-\u4DBF\uF900-\uFAD9\u3000-\u303F\u2000-\u206F\uFF00-\uFFEF]{1,60}$</param>
+		</setting>
+	</style>
+
+	<!-- 省编号样式 -->
+	<style id="ProvinceNoStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- 城市编号样式 -->
+	<style id="CityCodeStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- 银行编号样式 -->
+	<style id="BankCodeStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- 联行编号样式 -->
+	<style id="BankUnionNodeStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- 动态密码样式 -->
+	<style id="TokenPasswordStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="length">4,8</param>
+			<param name="pattern">^[0-9]{4,8}$</param>
+		</setting>
+	</style>
+
+	<!-- 转账类型样式 -->
+	<style id="TransferTypeStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- 优先级样式 -->
+	<style id="PriorityStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">^\d+$</param>
+		</setting>
+	</style>
+
+	<!-- 汇款方式 -->
+	<style id="PayPathStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">^\d+$</param>
+		</setting>
+	</style>
+
+	<!-- 笔数样式 -->
+	<style id="SeqNoKeyStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">^[1-9]+[0]*$</param>
+		</setting>
+	</style>
+
+	<!-- 省代码样式 -->
+	<style id="ProvinceCodeStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- 金额样式 -->
+	<style id="AmountStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="length">1,22</param>
+			<param name="pattern">^(\d*|\d{1,3}(,\d{3})*)(\.\d{0,2})?$</param>
+			<param name="type">decimal</param>
+		</setting>
+	</style>
+
+	<!-- 转帐用途样式 -->
+	<style id="PurposeStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- 付款用途方式样式 -->
+	<style id="RemarkModeStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="rulePattern">^.{1,64}$</param>
+		</setting>
+	</style>
+
+	<!-- 规则编号样式 -->
+	<style id="RuleIdStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- 日期样式(yyyy-MM-dd格式) -->
+	<style id="DateStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">^\d{4}-?((0?[1-9])|(1[0-2]))-?((0?[1-9])|([1-2][0-9])|(3[01]))$</param>
+			<param name="type">date</param>
+		</setting>
+		<messages>
+			<param name="type">validation.type.date</param>
+		</messages>
+	</style>
+
+	<!-- 钞汇标志样式 -->
+	<style id="CRFlagStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- 定期存期样式 -->
+	<style id="FiexedPeriodStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- 行别标志样式 -->
+	<style id="SysFlagStyle">
+		<setting>
+		</setting>
+	</style>
+
+	<!-- 备注样式 -->
+	<style id="RemarkStyle">
+		<setting>
+			<param name="ruleRequired">false</param>
+			<param name="rulePattern">^[A-Za-z0-9\u4E00-\u9FBB\u3400-\u4DBF\uF900-\uFAD9\u3000-\u303F\u2000-\u206F\uFF00-\uFFEF\W]{1,64}$</param>
+		</setting>
+	</style>
+
+	<!-- 定期支取方式样式 -->
+	<style id="FixPayType">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+		<messages>
+			<param name="option">validation.accesscontrol</param>
+		</messages>
+	</style>
+
+	<!-- 续存标志样式 -->
+	<style id="FixExtendFlgStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- 账户类型限制特殊字符校验 -->
+	<style id="StrictAcTypeStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">^[a-zA-Z0-9]{1,3}$</param>
+		</setting>
+	</style>
+
+	<!-- 收款人姓名样式 -->
+	<style id="PayeeAcNameStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="rulePattern">^[A-Za-z0-9\u4E00-\u9FBB\u3400-\u4DBF\uF900-\uFAD9\u3000-\u303F\u2000-\u206F\uFF00-\uFFEF]{1,60}$</param>
+		</setting>
+	</style>
+
+	<!-- 联行号样式 -->
+	<style id="UnionDeptIdStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- 清算行号样式 -->
+	<style id="DrecCodeStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- 是否本银行账户 -->
+	<style id="IsThisBankAcNoStyle">
+		<setting>
+		</setting>
+	</style>
+
+	<!-- 可用额度样式 -->
+	<style id="AvailLimitStyle">
+		<setting>
+		</setting>
+	</style>
+
+	<!-- 缴费业务代码样式 -->
+	<style id="BusiCodeStyle">
+		<setting>
+		</setting>
+	</style>
+
+	<!-- 单位编号样式 -->
+	<style id="UnitNoStyle">
+		<setting>
+		</setting>
+	</style>
+
+	<!-- 合同编号样式 -->
+	<style id="ContractNoStyle">
+		<setting>
+		</setting>
+	</style>
+
+	<!-- 帐单年月样式 -->
+	<style id="BillYMStyle">
+		<setting>
+		</setting>
+	</style>
+
+	<!-- Pin标识样式 -->
+	<style id="PinFlagStyle">
+		<setting>
+		</setting>
+	</style>
+
+	<!-- 信用额度样式 -->
+	<style id="CreditLimitStyle">
+		<setting>
+		</setting>
+	</style>
+
+	<!-- 预借现金额度样式 -->
+	<style id="CashLimitStyle">
+		<setting>
+		</setting>
+	</style>
+
+	<!-- 预借现金可用信用额度样式 -->
+	<style id="CashAvailLimitStyle">
+		<setting>
+		</setting>
+	</style>
+
+	<!-- 账户余额符号样式 -->
+	<style id="BalanceFlag">
+		<setting>
+		</setting>
+	</style>
+
+	<!-- 自动还款方式样式 -->
+	<style id="AutoPayTypeStyle">
+		<setting>
+		</setting>
+	</style>
+
+	<!-- 本期到期日样式 -->
+	<style id="CurrentDueDateStyle">
+		<setting>
+		</setting>
+	</style>
+
+	<!-- 产品代码样式 -->
+	<style id="TransCodeStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- 产品编号样式 -->
+	<style id="ProductIdStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- 产品名样式 -->
+	<style id="ProductNameStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- 时间段样式 -->
+	<style id="PeriodStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- 预期收益 -->
+	<style id="InComeStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- 约定类型 -->
+	<style id="BookFlagStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- 约定存期样式 -->
+	<style id="SaveTermStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- 合同号样式 -->
+	<style id="CustNoStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- 地址样式 -->
+	<style id="AddrStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- 电话号码样式 -->
+	<style id="PhoneStyle">
+		<setting>
+			<param name="ruleRequired">false</param>
+			<param name="length">6,20</param>
+			<param name="pattern">\d+(\-\d+)*</param>
+		</setting>
+	</style>
+	<!-- 手机号码样式 -->
+	<style id="MoblieStyle">
+		<setting>
+			<param name="ruleRequired">false</param>
+			<param name="pattern">^1\d{10}$</param>
+		</setting>
+	</style>
+
+	<!-- 邮编样式 -->
+	<style id="ZipCodeStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="length">6</param>
+			<param name="pattern">^[0-9]{6}$</param>
+		</setting>
+		<messages>
+			<param name="pattern">validation.pattern_mismatch</param>
+		</messages>
+	</style>
+
+	<!-- 存期样式 -->
+	<style id="FixedSavingStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">^[0-9A-Za-z]{2}$</param>
+		</setting>
+		<messages>
+			<param name="pattern">validation.digit</param>
+		</messages>
+	</style>
+
+	<!-- 定期到期续存标志 -->
+	<style id="TimRenewFlagStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- 整数样式 -->
+	<style id="IntegerStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">^[0-9]{0,8}$</param>
+		</setting>
+		<messages>
+			<param name="pattern">validation.digit</param>
+		</messages>
+	</style>
+
+	<!-- 定时频率种类样式  -->
+	<style id="TimerFreqStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- 定时种类样式 -->
+	<style id="TimerTypeStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- 定时规则样式 -->
+	<style id="TimerRuleStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- 定制次数样式 -->
+	<style id="OrderTimesStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">^[1-9][0-9]{0,2}$</param>
+		</setting>
+	</style>
+
+	<!-- 账户顺序号样式 -->
+	<style id="AcSeqStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- 银行名称样式  -->
+	<style id="BankNameStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- 还款方式样式 -->
+	<style id="OperateFlagStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- 还款类型样式 -->
+	<style id="PayForTypeStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- 时间样式 -->
+	<style id="TimeStyle">
+		<setting>
+		</setting>
+	</style>
+
+	<!-- 流水样式 -->
+	<style id="JnlNoStyle">
+		<setting>
+		</setting>
+	</style>
+
+	<!-- 交易类型样式 -->
+	<style id="TransTypeStyle">
+		<setting>
+		</setting>
+	</style>
+
+	<!-- 交易描述 -->
+	<style id="TransDes">
+		<setting>
+		</setting>
+	</style>
+
+	<!-- 卡号后四位样式 -->
+	<style id="CardEndStyle">
+		<setting>
+		</setting>
+	</style>
+
+	<!-- 手机号码样式 -->
+	<style id="MobilePhoneStyle">
+		<setting>
+			<param name="ruleRequired">false</param>
+			<param name="option">false</param>
+			<param name="rulePattern">^[0-9]{7,11}$</param>
+		</setting>
+	</style>
+
+	<!-- CVV2样式 -->
+	<style id="CVV2Style">
+		<setting>
+		</setting>
+	</style>
+
+	<!-- 邮编样式 -->
+	<style id="PostCodeStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">^[0-9]{6}$</param>
+		</setting>
+	</style>
+
+	<!-- 定时状态样式 -->
+	<style id="TimerStateStyle">
+		<setting>
+		</setting>
+	</style>
+
+	<!-- 积分样式 -->
+	<style id="PointStyle">
+		<setting>
+		</setting>
+	</style>
+
+	<!-- 电子邮箱样式 -->
+	<style id="EmailStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="length">5,36</param>
+			<param name="pattern">^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$</param>
+		</setting>
+	</style>
+
+	<!-- 证件类型式样 -->
+	<style id="IdTypeStyle">
+		<setting>
+			<param name="ruleFilter">Y</param>
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- 证件号码式样 -->
+	<style id="IdNoStyle">
+		<setting>
+			<param name="ruleFilter">Y</param>
+			<param name="option">false</param>
+			<param name="pattern">^[a-zA-Z0-9]{1,30}$</param>
+		</setting>
+	</style>
+
+	<!-- 礼品编号样式 -->
+	<style id="GiftNoStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- 交易状态 -->
+	<style id="TransStateStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">^[0-9]{1}$</param>
+		</setting>
+	</style>
+
+	<!-- 客户编号样式 -->
+	<style id="CifNoStyle">
+		<setting>
+			<param name="ruleFilter">Y</param>
+			<param name="rulePattern">^[0-9Xx-]{4,30}$</param>
+		</setting>
+	</style>
+
+	<!-- 礼品名样式 -->
+	<style id="GiftNameStyle">
+		<setting>
+		</setting>
+	</style>
+
+	<!-- 地址样式 -->
+	<style id="AddressStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="length">1,64</param>
+		</setting>
+	</style>
+
+	<!-- IsCheckedStyle -->
+	<style id="IsCheckedStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- 留言状态 -->
+	<style id="RetFlagStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- 留言样式 -->
+	<style id="NoteSeqStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="type">int</param>
+		</setting>
+	</style>
+
+	<!-- 交易状态样式 -->
+	<style id="TrsStateStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- 用户号样式 -->
+	<style id="UserNoStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">^[a-zA-Z0-9]{7,20}$</param>
+		</setting>
+		<messages>
+			<param name="option">validation.required</param>
+			<param name="pattern">validation.pattern</param>
+		</messages>
+	</style>
+
+	<!-- 动态口令样式 -->
+	<style id="OTPPasswordStyle">
+		<setting>
+			<param name="ruleRequired">false</param>
+		</setting>
+	</style>
+
+	<!-- 人际关系样式 -->
+	<style id="RelationStyle">
+		<setting>
+			<param name="length">1,10</param>
+		</setting>
+	</style>
+
+	<!-- 单位名样式 -->
+	<style id="IncNameStyle">
+		<setting>
+		</setting>
+	</style>
+
+	<!-- 附属卡人英文/拼音姓名 -->
+	<style id="SideEhNameStyle">
+		<setting>
+		</setting>
+	</style>
+
+	<!-- 申请人姓名样式 -->
+	<style id="ChNameStyle">
+		<setting>
+			<param name="length">1,20</param>
+		</setting>
+	</style>
+
+	<!-- 附属卡人姓名样式 -->
+	<style id="SideChNameStyle">
+		<setting>
+			<param name="length">1,20</param>
+		</setting>
+	</style>
+
+	<!-- 信用卡主卡号 -->
+	<style id="CardNoStyle">
+		<setting>
+		</setting>
+	</style>
+
+	<!-- 性别样式 -->
+	<style id="SexStyle">
+		<setting>
+		</setting>
+	</style>
+
+	<!-- 是否只申请信用卡副卡 -->
+	<style id="AskType1Style">
+		<setting>
+		</setting>
+	</style>
+
+	<!-- 不符合办理金卡条件时，是否同意办理普卡 -->
+	<style id="AskTypeStyle">
+		<setting>
+		</setting>
+	</style>
+
+	<!-- 信用卡卡类型样式 -->
+	<style id="CreditRequiTypeStyle">
+		<setting>
+		</setting>
+	</style>
+
+	<!-- 欠息样式 -->
+	<style id="DueInterestAmtStyle">
+		<setting>
+		</setting>
+	</style>
+
+	<!-- 账户状态样式 -->
+	<style id="AcStatusStyle">
+		<setting>
+		</setting>
+	</style>
+
+	<!-- 定期支取方式样式 -->
+	<style id="FixPayTypeStyle">
+		<setting>
+		</setting>
+	</style>
+
+	<!-- 付款用途 -->
+	<style id="PayerUseStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- 交易密码样式 -->
+	<style id="TrsPasswordStyle">
+		<setting>
+			<param name="ruleRequired">false</param>
+			<param name="pin">none</param>
+			<param name="rulePattern">^[0-9]{4,10}$</param>
+		</setting>
+	</style>
+
+	<!-- 存款类型样式 -->
+	<style id="TimTypeStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- 电话样式(区号必输) -->
+	<style id="PhoneStyle2">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">^d+([ -]d+)*$</param>
+		</setting>
+	</style>
+
+	<!-- 留言类型样式 -->
+	<style id="NoteTypeStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- 留言主题样式 -->
+	<style id="NoteSubjectStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="length">2,32</param>
+			<param name="pattern">^[A-Za-z0-9\u4E00-\u9FBB\u3400-\u4DBF\uF900-\uFAD9\u3000-\u303F\u2000-\u206F\uFF00-\uFFEF.。?？！!,，、；;：:'‘’“”"…\s]{2,32}$</param>
+		</setting>
+	</style>
+
+	<!-- 留言内容样式 -->
+	<style id="NoteContentStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="length">2,256</param>
+			<param name="pattern">^[A-Za-z0-9\u4E00-\u9FBB\u3400-\u4DBF\uF900-\uFAD9\u3000-\u303F\u2000-\u206F\uFF00-\uFFEF.。?？！!,，、；;：:'‘’“”"…\s]{2,256}$</param>
+		</setting>
+	</style>
+
+	<!-- 缴费账单号样式 -->
+	<style id="SeqNoStyle">
+		<setting>
+		</setting>
+	</style>
+
+	<!-- 性别样式 -->
+	<style id="SexTypeStyle">
+		<setting>
+		</setting>
+	</style>
+
+	<!-- 参考号样式 -->
+	<style id="ReferenceNoStyle">
+		<setting>
+			<param name="length">32</param>
+		</setting>
+	</style>
+
+	<!-- 授权码样式 -->
+	<style id="AuthNoStyle">
+		<setting>
+			<param name="length">32</param>
+		</setting>
+	</style>
+
+	<!-- 查询密码样式 -->
+	<style id="QryPasswordStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- 子账户笔序号样式 -->
+	<style id="SubAcSeqStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">^[0-9]{2,5}$</param>
+		</setting>
+	</style>
+
+	<!-- 通知存款类型样式 -->
+	<style id="NoticeTermStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- 证书下载码样式 -->
+	<style id="CertDownCodeStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">^[a-zA-Z0-9]{10}$</param>
+		</setting>
+	</style>
+
+	<!-- 利率样式 -->
+	<style id="RateTypeStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">^[0-1]{1}$</param>
+		</setting>
+	</style>
+
+	<!-- 动态口令序列号 -->
+	<style id="OTPSeqNoStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">^[0-9]{4,6}$</param>
+		</setting>
+	</style>
+
+	<!-- CVVStyle -->
+	<style id="CVVStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">^[0-9]{3}$</param>
+		</setting>
+	</style>
+
+	<!-- PasswordTypeStyle -->
+	<style id="PasswordTypeStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">^[0-9]{1}$</param>
+		</setting>
+	</style>
+
+	<!-- GiftCountStyle -->
+	<style id="GiftCountStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="type">int</param>
+		</setting>
+	</style>
+
+	<!-- GiftSeqNoStyle -->
+	<style id="GiftSeqNoStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- 数字样式  -->
+	<style id="NumberStyle">
+		<setting>
+			<param name="ruleRequired">false</param>
+			<param name="rulePattern">^[0-9]{1,20}$</param>
+		</setting>
+	</style>
+	<!-- 数字样式 （允许负值） -->
+	<style id="NumberStyle2">
+		<setting>
+			<param name="ruleRequired">false</param>
+			<param name="rulePattern">^[-]?[0-9]+[.]?[0-9]{0,2}$</param>
+		</setting>
+	</style>
+	<!-- GiftGetFlagStyle -->
+	<style id="GiftGetFlagStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- 学校编号 -->
+	<style id="SchoolNoStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- CompanyNameStyle -->
+	<style id="CompanyNameStyle">
+		<setting>
+			<param name="ruleRequired">false</param>
+		</setting>
+	</style>
+
+	<!-- 学生缴费编号 -->
+	<style id="StudentPayeeNoStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- 支票起始号 -->
+	<style id="CheckBeginNumStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- 支票张数 -->
+	<style id="CheckCountStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- 转出积分 -->
+	<style id="OutScoreStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- 支付宝支付限额 -->
+	<style id="LimitAliPayStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- 支付宝账号 -->
+	<style id="AliPayNoStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- 转存金额 -->
+	<style id="NoticeTrsAmountStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- 预约支取日 -->
+	<style id="PreDrawDateStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- 预约支取金额 -->
+	<style id="PreDrawAmountStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- 支取金额 -->
+	<style id="DrawAmountStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- 网点名称 -->
+	<style id="DeptNameStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- 访问控制账户样式WithBean -->
+	<style id="ACAcNoStyleWithBean">
+		<setting>
+			<param name="option">false</param>
+			<param name="ruleAcAC">AcBean</param>
+		</setting>
+	</style>
+
+	<!-- 访问控制账户样式 -->
+	<style id="ACAcNoStyle">
+		<setting>
+			<param name="ruleRequired">true</param>
+			<param name="ruleAcAC"></param>
+		</setting>
+	</style>
+
+	<!-- 查询账户或内部转入账号样式 -->
+	<style id="QueryAcNoStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="acPermission">0|1</param>
+			<param name="acType">1|D</param>
+		</setting>
+	</style>
+
+	<!-- 时间戳样式 -->
+	<style id="TimestampStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="type">timestamp</param>
+		</setting>
+	</style>
+
+	<!-- 用户登录名验证 -->
+	<style id="UserIdStyle1">
+		<setting>
+			<param name="ruleFilter">Y</param>
+			<param name="option">false</param>
+			<param name="pattern">^[a-zA-Z0-9\_]{6,14}$</param>
+		</setting>
+	</style>
+
+	<!-- 防伪信息验证 -->
+	<style id="newMessageStyle">
+		<setting>
+			<param name="option">true</param>
+			<param name="rulePattern">^[A-Za-z0-9\u4E00-\u9FBB\u3400-\u4DBF\uF900-\uFAD9\u3000-\u303F\u2000-\u206F\uFF00-\uFFEF.。?？！!,，、；;：:'‘’“”"…\s]{1,15}$</param>
+		</setting>
+	</style>
+
+	<!-- 简述原因 -->
+	<style id="ResContentStyle">
+		<setting>
+			<param name="ruleRequired">false</param>
+			<param name="rulePattern">^[ A-Za-z0-9\u4E00-\u9FBB\u3400-\u4DBF\uF900-\uFAD9\u3000-\u303F\u2000-\u206F\uFF00-\uFFEF]{1,32}$</param>
+		</setting>
+	</style>
+
+	<!-- 定时信息样式 -->
+	<style id="TimerInfoStyle">
+		<setting>
+		</setting>
+	</style>
+
+	<!-- OutLinkEnabledStyle -->
+	<style id="OutLinkEnabledStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- DeviceTypeStyle -->
+	<style id="DeviceTypeStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- 日期样式(yyyyMMdd格式) -->
+	<style id="DateStyleV1">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">^\d{4}((0?[1-9])|(1[0-2]))((0?[1-9])|([1-2][0-9])|(3[01]))$</param>
+			<param name="type">dateV1</param>
+		</setting>
+		<messages>
+			<param name="type">validation.type.date</param>
+		</messages>
+	</style>
+
+	<!-- 预约转账类型样式 -->
+	<style id="BookTransferStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- 安徽农信行内收款人账号格式 -->
+	<style id="ArcuPayeeAcNoStyle">
+		<setting>
+			<param name="pattern">^[a-zA-Z0-9]{19}$|^[a-zA-Z0-9]{23}$</param>
+		</setting>
+	</style>
+
+	<!-- 年份样式（YYYY） -->
+	<style id="YearStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="rulePattern">^\d{4}$</param>
+		</setting>
+	</style>
+
+	<!-- 月份样式（MM) -->
+	<style id="MonthStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="rulePattern">^((0?[1-9])|(1[0-2]))$</param>
+		</setting>
+	</style>
+
+	<!-- Mac样式 -->
+	<style id="MacStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="rulePattern">^[0-9A-F]{12}$</param>
+		</setting>
+	</style>
+
+	<!-- 日样式（DD） -->
+	<style id="DayStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="rulePattern">^((0?[1-9])|([1-2][0-9])|(3[01]))$</param>
+		</setting>
+	</style>
+
+	<!-- 机器指纹样式 -->
+	<style id="MFMStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+
+	<!-- 年月yyyyMM -->
+	<style id="YearMonthStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="rulePattern">^\d{4}(1[0-2]|0?[0-9])$</param>
+		</setting>
+	</style>
+	
+	<style id="JsonPropsStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="rulePattern">^[\w\.]+(,[\w\.]+)*$</param>
+		</setting>
+	</style>
+	
+	<style id="CommonFlagStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="rulePattern">^[0-9]{1}$</param>
+		</setting>
+	</style>
+	
+	<style id="WordStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+	
+	<!-- 序号样式 -->
+	<style id="SequenceStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+	
+	<!-- 员工编号样式 -->
+	<style id="PayeeSeqNoStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+	
+	<!-- 查询类型 -->
+	<style id="QueryTypeStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="rulePattern">^[DWMY]{1}$</param>
+		</setting>
+	</style>
+	
+	<!-- 常用汉字样式 -->
+	<style id="CommWordStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">^[ A-Za-z0-9\u4E00-\u9FBB\u3400-\u4DBF\uF900-\uFAD9\u3000-\u303F\u2000-\u206F\uFF00-\uFFEF]{1,16}$</param>
+		</setting>
+	</style>
+	<!-- 常用标志位样式 -->
+	<style id="CommTypeStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">^[0,1]{1}$</param>
+		</setting>
+	</style>
+	<!-- 常用非乱码样式 -->
+	<style id="CommStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">^[ A-Za-z0-9\u4E00-\u9FBB\u3400-\u4DBF\uF900-\uFAD9\u3000-\u303F\u2000-\u206F\uFF00-\uFFEF]{1,256}$</param>
+		</setting>
+	</style>
+	<!-- 非空样式 add by Hydra-->
+	<style id="NotNullStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+	<!-- 非空数字样式  -->
+	<style id="NotNullNumberStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="rulePattern">^[1-9][0-9]*$</param>
+		</setting>
+	</style>
+	
+	<!-- 非空手机号码样式 -->
+	<style id="NotNullMobilePhoneStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="rulePattern">^[0-9]{7,11}$</param>
+		</setting>
+	</style>
+	
+	<!-- 处理方式样式  -->
+	<style id="HandleTypeStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">^\w+$</param>
+		</setting>
+	</style>
+	<!-- 问题样式 -->
+	<style id="QuestionStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+	<!-- 密码校验方式样式 -->
+	<style id="PwdValidTypeStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+	
+	<!-- 批量名称样式  -->
+	<style id="BatchNameStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+	
+	<!--数量-->
+	<style id="CountStyle">
+		<setting>
+			<param name="option">true</param>
+			<param name="pattern">^[1-9][0-9]*$</param>
+		</setting>
+	</style>
+	
+	<!-- 产品期限 -->
+	<style id="LiveTimeStyle">
+		<setting>
+			<param name="option">true</param>
+		</setting>
+	</style>
+	
+	<!-- 产品类型 -->
+	<style id="PrdTypeStyle">
+		<setting>
+			<param name="option">true</param>
+		</setting>
+	</style>
+	
+	<!-- 客户标识类型 -->
+	<style id="AccTypeStyle">
+		<setting>
+			<param name="option">false</param>
+		</setting>
+	</style>
+</config>
+</spring:beans>

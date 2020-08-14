@@ -1,0 +1,255 @@
+<spring:beans xmlns:spring="http://www.springframework.org/schema/beans"
+	xmlns="http://www.csii.com.cn/schema/pe" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+       					   http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd
+       					   http://www.csii.com.cn/schema/pe	http://www.csii.com.cn/schema/pe/pe-1.0.xsd">
+
+<config>
+
+<!-- 	<localeResolver class="org.springframework.web.servlet.i18n.CookieLocaleResolver"/> -->
+	
+	<localeResolver />
+
+	<multipartResolver>
+		<param name="defaultEncoding">UTF-8</param>
+		<param name="uploadTempDir">${uploadTempDir}</param>
+		<param name="maxUploadSize">${maxUploadSize}</param>
+	</multipartResolver>
+
+
+
+	<!-- View Resolver -->
+
+	<bean id="mainViewResolver" class="com.csii.pe.channel.http.servlet.HashMapViewResolver">
+		<map name="mapping">
+
+			<bean name="default" class="com.csii.pe.channel.http.servlet.UrlView">
+				<param name="usingDeviceClass">false</param>
+<!-- 				<ref name="dynamicWebModuleRegistry">WebModuleRegistry</ref> -->
+				<param name="cacheSeconds">0</param>
+				<param name="prefix">/WEB-INF/</param>
+				<param name="suffix">.jsp</param>
+				<param name="localeMode">0</param>
+				<!-- -1 prefix; 0 none; 1 suffix -->
+				<param name="clientType">true</param>
+				<param name="forceXHTML">true</param>
+				<param name="forceUsingJSP20EL">true</param>
+				<!-- clientType:true时，若设置下述开关，则根据设置确定是否生成Javascript。
+				      若未设置下述开关，则PE将根据手机实际能力来确定是否生成javascript -->
+			    <!-- clientType:false时，若设置下述开关，则根据设置确定是否生成Javascript。
+			     	 若未设置下述开关，默认生成Javascript。
+				      -->
+
+				<param name="forceJavaScriptDisabled">true</param>
+				<bean name="clientTypeResolver" class="com.csii.pe.channel.http.servlet.SimpleClientTypeResolver">
+					<param name="xmlAcceptType">text/b2exml</param>
+				</bean>
+				<param name="contentType">application/json;charset=UTF-8</param>
+				<param name="forceSetContentType">true</param>
+			</bean>
+			
+			<bean name="jsp" class="com.csii.pe.channel.http.servlet.UrlView">
+				<param name="usingDeviceClass">false</param>
+<!-- 				<ref name="dynamicWebModuleRegistry">WebModuleRegistry</ref> -->
+				<param name="cacheSeconds">0</param>
+				<param name="prefix">/WEB-INF/</param>
+				<param name="suffix">.jsp</param>
+				<param name="localeMode">0</param>
+				<!-- -1 prefix; 0 none; 1 suffix -->
+				<param name="clientType">true</param>
+				<param name="forceXHTML">true</param>
+				<param name="forceUsingJSP20EL">true</param>
+				<!-- clientType:true时，若设置下述开关，则根据设置确定是否生成Javascript。
+				      若未设置下述开关，则PE将根据手机实际能力来确定是否生成javascript -->
+			    <!-- clientType:false时，若设置下述开关，则根据设置确定是否生成Javascript。
+			     	 若未设置下述开关，默认生成Javascript。
+				-->
+
+				<param name="forceJavaScriptDisabled">true</param>
+				<bean name="clientTypeResolver" class="com.csii.pe.channel.http.servlet.SimpleClientTypeResolver">
+					<param name="xmlAcceptType">text/b2exml</param>
+				</bean>
+			</bean>			
+
+			<bean name="confirm" class="com.csii.pe.channel.http.servlet.UrlView">
+				<param name="usingDeviceClass">false</param>
+<!-- 				<ref name="dynamicWebModuleRegistry">WebModuleRegistry</ref> -->
+				<param name="cacheSeconds">0</param>
+				<param name="prefix">/WEB-INF/</param>
+				<param name="suffix">default/confirm.jsp</param>
+				<param name="localeMode">0</param>
+				<!-- -1 prefix; 0 none; 1 suffix -->
+				<param name="clientType">true</param>
+				<param name="forceXHTML">true</param>
+				<param name="forceUsingJSP20EL">true</param>
+				<!-- clientType:true时，若设置下述开关，则根据设置确定是否生成Javascript。 若未设置下述开关，则PE将根据手机实际能力来确定是否生成javascript -->
+				<!-- clientType:false时，若设置下述开关，则根据设置确定是否生成Javascript。 若未设置下述开关，默认生成Javascript。 -->
+
+				<param name="forceJavaScriptDisabled">true</param>
+				<bean name="clientTypeResolver" class="com.csii.pe.channel.http.servlet.SimpleClientTypeResolver">
+					<param name="xmlAcceptType">text/b2exml</param>
+				</bean>
+				<param name="contentType">application/json;charset=UTF-8</param>
+				<param name="forceSetContentType">true</param>
+			</bean>
+
+			<bean name="servlet" class="com.csii.pe.channel.http.servlet.UrlView">
+<!-- 				<ref name="dynamicWebModuleRegistry">WebModuleRegistry</ref> -->
+				<param name="cacheSeconds">0</param>
+				<param name="prefix"></param>
+				<param name="suffix">.do</param>
+				<param name="localeMode">0</param>
+				<!-- -1 prefix; 0 none; 1 suffix -->
+				<param name="clientType">false</param>
+			</bean>
+
+			<bean name="cache" class="com.csii.pe.channel.http.servlet.UrlView">
+<!-- 				<ref name="dynamicWebModuleRegistry">WebModuleRegistry</ref> -->
+				<param name="prefix"></param>
+				<param name="suffix"></param>
+				<param name="localeMode">0</param>
+				<!-- -1 prefix; 0 none; 1 suffix -->
+				<param name="clientType">true</param>
+				<param name="forceXHTML">true</param>
+				<param name="forceUsingJSP20EL">true</param>
+				<param name="forceJavaScriptDisabled">true</param>
+				<bean name="clientTypeResolver" class="com.csii.pe.channel.http.servlet.SimpleClientTypeResolver">
+					<param name="xmlAcceptType">text/b2exml</param>
+				</bean>
+			</bean>
+
+			<bean name="json" class="com.csii.pe.channel.http.servlet.JsonView">
+				<param name="jsonField">json</param>
+				<param name="contentType">application/json;charset=UTF-8</param>
+			</bean>
+
+			<bean name="stream" class="com.csii.pe.channel.http.servlet.StreamView">
+				<param name="contentType">text/plain;charset=UTF-8</param>
+				<param name="contentField">Content</param>
+				<param name="encoding">UTF-8</param>
+			</bean>
+
+			<bean name="imgStream" class="com.csii.pe.channel.http.servlet.StreamView">
+				<param name="contentType">images/*</param>
+				<param name="contentField">Content</param>
+				<param name="encoding">UTF-8</param>
+			</bean>
+
+			<bean name="download" class="com.csii.pe.channel.http.servlet.DownloadView">
+				<param name="fileNameEncoding">GBK</param>
+<!-- 				<param name="fileNameFromEncoding">GBK</param> -->
+<!-- 				<param name="contentType">application/octet-stream;charset=GBK</param> -->
+			</bean>
+			
+<!-- 			<bean name="txt" class="com.csii.pe.channel.http.servlet.StreamView"> -->
+<!-- 				<param name="contentType">text/plain;charset=UTF-8</param> -->
+<!-- 				<param name="contentField">Content</param> -->
+<!-- 				<param name="encoding">UTF-8</param> -->
+<!-- 			</bean>			 -->
+
+			<bean name="txt" class="com.csii.pe.channel.http.servlet.DownloadView">
+				<param name="contentType">text/plain;charset=UTF-8</param>
+			</bean>
+			<bean name="csv" class="com.csii.pe.channel.http.servlet.DownloadView">
+				<param name="contentType">text/plain;charset=UTF-8</param>
+			</bean>			
+			<bean name="xls" class="com.csii.pe.channel.http.servlet.DownloadView">
+				<param name="contentType">application/vnd.ms-excel</param>
+			</bean>
+			<bean name="pdf" class="com.csii.pe.channel.http.servlet.DownloadView">
+				<param name="contentType">application/pdf</param>
+			</bean>
+			<bean name="rtf" class="com.csii.pe.channel.http.servlet.DownloadView">
+				<param name="contentType">application/vnd.ms-word</param>
+			</bean>
+
+			<bean name="goback" class="com.csii.pe.channel.http.servlet.GoBackUrlView">
+<!-- 				<ref name="dynamicWebModuleRegistry">WebModuleRegistry</ref> -->
+				<param name="cacheSeconds">0</param>
+				<param name="prefix">/WEB-INF/</param>
+				<param name="suffix">.jsp</param>
+				<param name="localeMode">0</param>
+				<!-- -1 prefix; 0 none; 1 suffix -->
+				<param name="clientType">true</param>
+				<param name="forceXHTML">true</param>
+				<param name="forceUsingJSP20EL">true</param>
+				<param name="defaultViewName">defaultSystemError</param>
+				<param name="contentType">application/json;charset=UTF-8</param>
+				<param name="forceSetContentType">true</param>
+			</bean>
+
+			<bean name="script" class="com.csii.pe.channel.http.servlet.ScriptView">
+				<param name="fileEncoding">UTF-8</param>
+				<param name="compatiableFlag">true</param>
+				<param name="localeFlag">true</param>
+			</bean>
+
+		</map>
+	</bean>
+
+
+	<!-- MVC controller -->
+	<bean id="mainController" class="com.csii.pe.channel.http.servlet.MainController">
+		<param name="loginView">forceout</param>
+		<ref name="coreController">coreController</ref>
+		<ref name="constantsMap">constantsMap</ref>
+
+		<ref name="idResolver">extendedIdResolver</ref>
+		<ref name="contextResolver">extendedContextResolver</ref>
+
+		<ref name="exceptionHandler">exceptionHandler</ref>
+	</bean>
+	
+	<bean id="extendedIdResolver" class="com.csii.pe.channel.http.ExtendedTrsIdResolver">
+	</bean>
+	
+	<bean id="extendedContextResolver" class="com.csii.ibs.wap.ProviderBasedWAPContextResolver">
+		<ref name="trsFlowManager">trsFlowManager</ref>
+		<ref name="trsFlowIdManager">trsFlowIdManager</ref>
+		<list name="requestResolvers">
+			<bean class="com.csii.pe.channel.http.servlet.JsonRequestResolver">
+				<bean name="beforeParser" class="com.csii.pe.channel.http.servlet.LogParser"/>
+			</bean>
+			<bean class="com.csii.pe.channel.http.servlet.XmlRequestResolver">
+<!-- 				<ref name="transformerFactory">CSXMLTransformerFactory</ref> -->
+				<bean name="beforeParser" class="com.csii.pe.channel.http.servlet.LogParser"/>
+			</bean>
+		</list>
+	</bean>
+	<bean id="trsFlowManager" class="com.csii.pe.trsflow.TrsFlowManagerImpl">
+		<ref name="trsFlowIdGenerator">trsFlowIdGenerator</ref>
+	</bean>
+	<bean id="trsFlowIdGenerator" class="com.csii.pe.trsflow.SecureTrsFlowIdGenerator" />
+	<bean id="trsFlowIdManager" class="com.csii.pe.channel.http.servlet.TrsFlowIdManagerImpl" />
+	
+	<bean id="exceptionHandler" class="com.csii.uibs.CustomMessageViewExceptionHandler">
+		<!-- bean id="exceptionHandler" class="com.csii.pe.channel.http.servlet.ViewExceptionHandler" -->
+		<param name="backToInputForValidationError">${exceptionHandler.backToInputForValidationError}</param>
+		<param name="cacheDataForErrorPage">${exceptionHandler.cacheDataForErrorPage}</param>
+		<param name="defaultErrorView">${exceptionHandler.defaultErrorView}</param>
+		<param name="defaultPublicErrorView">defaultPublicError</param>
+<!-- 		<ref name="cachedBankRuleAttribute">CachedBankRuleAttribute</ref> -->
+<!-- 		<ref name="cachedBankPool">CachedBankPool</ref> -->
+
+		<ref name="messageCodeMapping">messageCodeMapping</ref>
+
+		<param name="maxErrorMessageLength">${exceptionHandler.maxErrorMessageLength}</param>
+		<param name="errorMessageEncoding">${exceptionHandler.errorMessageEncoding}</param>
+		<param name="defaultMappingCode">${exceptionHandler.defaultMappingCode}</param>
+
+
+	</bean>
+
+	<sharedMap id="messageCodeMapping">
+		<map name="sourceMap">
+			<param name="role.invalid_user">000001</param>
+			<param name="DataIntegrityViolation">000002</param>
+		</map>
+	</sharedMap>
+
+
+	<!-- Rule Check pool -->
+
+</config>
+</spring:beans>

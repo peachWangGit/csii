@@ -1,0 +1,1367 @@
+<spring:beans xmlns:spring="http://www.springframework.org/schema/beans"
+	xmlns="http://www.csii.com.cn/schema/pe" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+       					   http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd
+       					   http://www.csii.com.cn/schema/pe	http://www.csii.com.cn/schema/pe/pe-1.0.xsd">
+
+<config>
+<sharedMap id="constantsMap">
+	<map name="sourceMap">
+	<!-- 客户状态 -->
+	<list name="CifState" >
+		<param >0</param>
+		<param >1</param>
+	</list>
+	<!-- 定时种类 -->
+	<list name="TimerType" >
+		<param >0</param>
+		<param >1</param>
+	</list>
+	<!-- 还款方式 -->
+	<list name="PayLoanType" >
+		<param >0</param>
+		<param >1</param>
+	</list>
+	<!-- 付款用途方式 -->
+	<list name="RemarkMode" >
+		<param >0</param>
+		<param >1</param>
+	</list>
+	<!-- null -->
+	<list name="Option" >
+		<param >I</param>
+		<param >L</param>
+	</list>
+	<!-- 信用卡密码类型 -->
+	<list name="CreditPassWordType" >
+		<param >1</param>
+		<param >2</param>
+	</list>
+	<!-- 支取方式 -->
+	<list name="DrawType" >
+		<param >0</param>
+		<param >1</param>
+	</list>
+	<!-- 个人非按揭贷款类型 -->
+	<list name="MorLoanType" >
+		<param >11</param>
+		<param >12</param>
+		<param >13</param>
+		<param >14</param>
+	</list>
+	<!-- 银行账户类型 -->
+	<list name="BankAcType" >
+		<param >01</param>
+		<param >02</param>
+		<param >03</param>
+		<param >04</param>
+		<param >05</param>
+		<param >06</param>
+		<param >07</param>
+		<param >09</param>
+		<param >20</param>
+		<param >21</param>
+		<param >22</param>
+		<param >30</param>
+		<param >31</param>
+		<param >32</param>
+		<param >40</param>
+		<param >41</param>
+		<param >50</param>
+		<param >51</param>
+		<param >52</param>
+		<param >53</param>
+		<param >54</param>
+		<param >55</param>
+		<param >56</param>
+		<param >57</param>
+		<param >58</param>
+		<param >59</param>
+		<param >60</param>
+		<param >62</param>
+		<param >63</param>
+		<param >80</param>
+		<param >90</param>
+		<param >A1</param>
+		<param >BB</param>
+		<param >C1</param>
+		<param >C2</param>
+		<param >C3</param>
+		<param >C4</param>
+		<param >E1</param>
+		<param >E2</param>
+		<param >E3</param>
+		<param >F3</param>
+		<param >G1</param>
+		<param >J0</param>
+		<param >J1</param>
+		<param >J2</param>
+		<param >J3</param>
+		<param >J4</param>
+		<param >J5</param>
+		<param >J6</param>
+		<param >J7</param>
+		<param >J8</param>
+		<param >J9</param>
+		<param >JA</param>
+		<param >JB</param>
+		<param >JC</param>
+		<param >JD</param>
+		<param >JE</param>
+		<param >JF</param>
+		<param >JG</param>
+		<param >K1</param>
+		<param >K2</param>
+		<param >K3</param>
+		<param >M0</param>
+		<param >M1</param>
+		<param >M2</param>
+		<param >M3</param>
+		<param >T0</param>
+		<param >T1</param>
+		<param >T2</param>
+		<param >T3</param>
+		<param >T4</param>
+		<param >T5</param>
+		<param >T6</param>
+		<param >T7</param>
+		<param >T8</param>
+		<param >T9</param>
+		<param >Y0</param>
+		<param >Y1</param>
+		<param >Y2</param>
+		<param >Y3</param>
+		<param >Y4</param>
+		<param >Y5</param>
+		<param >Y6</param>
+		<param >Y7</param>
+		<param >Y8</param>
+	</list>
+	<!-- null -->
+	<list name="DeviceType" >
+		<param >default</param>
+		<param >large</param>
+		<param >rich</param>
+		<param >small</param>
+	</list>
+	<!-- 业务类型 -->
+	<list name="AssLiaType" >
+		<param >0</param>
+		<param >1</param>
+	</list>
+	<!-- 结束标志 -->
+	<list name="EndFlag" >
+		<param >0</param>
+		<param >1</param>
+	</list>
+	<!-- 业务开通状态 -->
+	<list name="BusiState" >
+		<param >0</param>
+		<param >1</param>
+		<param >2</param>
+	</list>
+	<!-- 套餐种类 -->
+	<list name="PackageType" >
+		<param >0</param>
+		<param >1</param>
+		<param >2</param>
+		<param >3</param>
+	</list>
+	<!-- 通知最低交易额设置 -->
+	<list name="CreditNotifySetLimit" >
+		<param >0</param>
+		<param >1</param>
+		<param >2</param>
+		<param >3</param>
+		<param >9</param>
+	</list>
+	<!-- 回复标志 -->
+	<list name="RetFlag" >
+		<param ></param>
+		<param >0</param>
+		<param >1</param>
+	</list>
+	<!-- null -->
+	<list name="PayeeType" >
+		<param >F</param>
+		<param >M</param>
+		<param >P</param>
+		<param >T</param>
+	</list>
+	<!-- 币种 -->
+	<list name="Currency" >
+		<param ></param>
+		<param >AUD</param>
+		<param >CAD</param>
+		<param >CHF</param>
+		<param >CNY</param>
+		<param >EUR</param>
+		<param >GBP</param>
+		<param >HKD</param>
+		<param >JPY</param>
+		<param >NZD</param>
+		<param >SEK</param>
+		<param >SGD</param>
+		<param >USD</param>
+	</list>
+	<!-- 是否使用密码标志 -->
+	<list name="PasswordFlag" >
+		<param >0</param>
+		<param >1</param>
+		<param >N</param>
+		<param >Y</param>
+	</list>
+	<!-- null -->
+	<list name="StateFlag" >
+		<param >0</param>
+		<param >1</param>
+	</list>
+	<!-- 操作类型 -->
+	<list name="DoType" >
+		<param >0</param>
+		<param >1</param>
+		<param >2</param>
+		<param >3</param>
+	</list>
+	<!-- 股金账户状态 -->
+	<list name="StockAcctState" >
+		<param >1</param>
+		<param >2</param>
+		<param >3</param>
+	</list>
+	<!-- 是否检查密码标志 -->
+	<list name="PinFlag" >
+		<param >0</param>
+		<param >1</param>
+		<param >2</param>
+	</list>
+	<!-- null -->
+	<list name="OrderTransType" >
+		<param >0</param>
+		<param >1</param>
+		<param >2</param>
+	</list>
+	<!-- 是否开通短信服务 -->
+	<list name="CreditNotifySetSms" >
+		<param >0</param>
+		<param >1</param>
+		<param >9</param>
+	</list>
+	<!-- 存期 -->
+	<list name="Term" >
+		<param >D0</param>
+		<param >D1</param>
+		<param >D7</param>
+		<param >M0</param>
+		<param >M1</param>
+		<param >M3</param>
+		<param >M6</param>
+		<param >N1</param>
+		<param >N7</param>
+		<param >Y1</param>
+		<param >Y2</param>
+		<param >Y3</param>
+		<param >Y5</param>
+		<param >Y6</param>
+		<param >Y8</param>
+	</list>
+	<!-- 是否留名 -->
+	<list name="SaveNameType" >
+		<param >0</param>
+		<param >1</param>
+	</list>
+	<!-- 理财方案 -->
+	<list name="InvPlanMode" >
+		<param >0</param>
+		<param >1</param>
+	</list>
+	<!-- 积分查询账户类型 -->
+	<list name="ScoreAcctType" >
+		<param >1</param>
+		<param >2</param>
+	</list>
+	<!-- 行业 -->
+	<list name="Calling" >
+		<param >0</param>
+		<param >1</param>
+		<param >2</param>
+		<param >3</param>
+		<param >4</param>
+		<param >5</param>
+	</list>
+	<!-- 职务 -->
+	<list name="Headship" >
+		<param >0</param>
+		<param >1</param>
+		<param >2</param>
+		<param >3</param>
+		<param >4</param>
+	</list>
+	<!-- 定时计划状态 -->
+	<list name="TimerState" >
+		<param >0</param>
+		<param >1</param>
+		<param >2</param>
+	</list>
+	<!-- 定期一本通是否挂卡 -->
+	<list name="TimState" >
+		<param >0</param>
+		<param >1</param>
+	</list>
+	<!-- 约定存期 -->
+	<list name="SaveTerm" >
+		<param >03</param>
+		<param >06</param>
+		<param >09</param>
+		<param >12</param>
+	</list>
+	<!-- 是否开通邮件通知 -->
+	<list name="CreditNotifySetEmail" >
+		<param >0</param>
+		<param >1</param>
+		<param >9</param>
+	</list>
+	<!-- 初始化标志 -->
+	<list name="BeginFlag" >
+		<param >0</param>
+		<param >1</param>
+	</list>
+	<!-- 缴费业务代码 -->
+	<list name="BusiCode" >
+		<param >0</param>
+		<param >3</param>
+		<param >4</param>
+	</list>
+	<!-- 通知存款处理状态 -->
+	<list name="NoticeDealFlag" >
+		<param >0</param>
+		<param >1</param>
+		<param >2</param>
+		<param >3</param>
+	</list>
+	<!-- 性别 -->
+	<list name="SexType" >
+		<param >0</param>
+		<param >1</param>
+	</list>
+	<!-- 最近笔数 -->
+	<list name="SeqNoKey" >
+		<param >10</param>
+		<param >20</param>
+		<param >30</param>
+		<param >40</param>
+		<param >50</param>
+	</list>
+	<!-- 账单寄送方式 -->
+	<list name="PostType" >
+		<param >0100</param>
+		<param >0101</param>
+	</list>
+	<!-- 通知存款种类 -->
+	<list name="NoticeTermV1" >
+		<param >1</param>
+		<param >2</param>
+		<param >3</param>
+	</list>
+	<!-- 约定类型 -->
+	<list name="PromiseType" >
+		<param >0</param>
+		<param >1</param>
+	</list>
+	<!-- 申请约定零存情况 -->
+	<list name="PromiseDisState" >
+		<param >0</param>
+		<param >1</param>
+	</list>
+	<!-- 账户类型 -->
+	<list name="AcType" >
+		<param >0</param>
+		<param >1</param>
+		<param >2</param>
+		<param >3</param>
+		<param >4</param>
+		<param >5</param>
+		<param >9</param>
+		<param >A</param>
+		<param >C</param>
+		<param >D</param>
+		<param >P</param>
+		<param >S</param>
+		<param >T</param>
+	</list>
+	<!-- 礼品领取登记方式 -->
+	<list name="GiftGetFlag" >
+		<param >0</param>
+		<param >1</param>
+		<param >2</param>
+	</list>
+	<!-- 信用卡卡类型 -->
+	<list name="CreditRequiType" >
+		<param >0</param>
+		<param >1</param>
+		<param >2</param>
+		<param >3</param>
+	</list>
+	<!-- 状态 -->
+	<list name="FunctionStateFlag" >
+		<param >0</param>
+		<param >1</param>
+	</list>
+	<!-- 转账类型 -->
+	<list name="TransferType" >
+		<param >0</param>
+		<param >1</param>
+	</list>
+	<!-- 还本息方式 -->
+	<list name="PayeeLoanType" >
+		<param ></param>
+		<param >1</param>
+		<param >2</param>
+		<param >3</param>
+		<param >4</param>
+		<param >5</param>
+		<param >6</param>
+	</list>
+	<!-- null -->
+	<list name="AskType1" >
+		<param >0</param>
+		<param >1</param>
+	</list>
+	<!-- 钞汇标志 -->
+	<list name="CRFlag" >
+		<param ></param>
+		<param >C</param>
+		<param >O</param>
+		<param >R</param>
+	</list>
+	<!-- null -->
+	<list name="PaymentFlag" >
+		<param >0</param>
+		<param >1</param>
+		<param >2</param>
+	</list>
+	<!-- 登录类型 -->
+	<list name="LoginType" >
+		<param >C</param>
+		<param >E</param>
+		<param >M</param>
+		<param >N</param>
+		<param >O</param>
+		<param >P</param>
+		<param >R</param>
+		<param >S</param>
+	</list>
+	<!-- 转出方式 -->
+	<list name="TransOutType" >
+		<param >1</param>
+		<param >2</param>
+	</list>
+	<!-- 信用卡证件类型 -->
+	<list name="CreditIdType" >
+		<param >01</param>
+		<param >02</param>
+		<param >03</param>
+		<param >04</param>
+		<param >10</param>
+		<param >20</param>
+	</list>
+	<!-- null -->
+	<list name="TransState" >
+		<param >0</param>
+		<param >1</param>
+	</list>
+	<!-- 交易类型 -->
+	<list name="TransType" >
+		<param >0</param>
+		<param >1</param>
+		<param >2</param>
+		<param >3</param>
+	</list>
+	<!-- 基金状态 -->
+	<list name="FundState" >
+		<param >0</param>
+		<param >1</param>
+		<param >2</param>
+		<param >3</param>
+		<param >4</param>
+		<param >5</param>
+		<param >6</param>
+		<param >7</param>
+		<param >8</param>
+		<param >9</param>
+		<param >a</param>
+		<param >b</param>
+	</list>
+	<!-- 卡片种类  -->
+	<list name="CardType" >
+		<param >00</param>
+		<param >01</param>
+		<param >02</param>
+		<param >03</param>
+		<param >04</param>
+		<param >05</param>
+		<param >06</param>
+		<param >07</param>
+		<param >08</param>
+		<param >09</param>
+		<param >10</param>
+		<param >11</param>
+		<param >12</param>
+		<param >13</param>
+		<param >14</param>
+		<param >15</param>
+	</list>
+	<!-- null -->
+	<list name="LoanClass" >
+		<param >00</param>
+		<param >01</param>
+		<param >02</param>
+	</list>
+	<!-- 预约标志 -->
+	<list name="BookFlag" >
+		<param >0</param>
+		<param >1</param>
+		<param >2</param>
+	</list>
+	<!-- 产品状态 -->
+	<list name="ProductStatus" >
+		<param >0</param>
+		<param >1</param>
+	</list>
+	<!-- null -->
+	<list name="HSTAAcState" >
+		<param >0</param>
+		<param >1</param>
+		<param >2</param>
+		<param >3</param>
+		<param >4</param>
+		<param >5</param>
+	</list>
+	<!-- 职称 -->
+	<list name="TitlePost" >
+		<param >0</param>
+		<param >1</param>
+		<param >2</param>
+		<param >3</param>
+	</list>
+	<!-- 信用卡密码类型 -->
+	<list name="CreditPassType" >
+		<param >1</param>
+		<param >2</param>
+	</list>
+	<!-- 附卡设置方式 -->
+	<list name="CreditAttachSetType" >
+		<param >0</param>
+		<param >1</param>
+		<param >2</param>
+	</list>
+	<!-- 信用卡种类 -->
+	<list name="CreditcardType" >
+		<param >0</param>
+		<param >1</param>
+	</list>
+	<!-- null -->
+	<list name="Priority" >
+		<param >0</param>
+		<param >1</param>
+	</list>
+	<!-- null -->
+	<list name="LoanPayType" >
+		<param >01</param>
+		<param >02</param>
+		<param >04</param>
+		<param >05</param>
+		<param >06</param>
+		<param >07</param>
+	</list>
+	<!-- 单位编号 -->
+	<list name="UnitNo" >
+		<param >1</param>
+		<param >10</param>
+		<param >99</param>
+	</list>
+	<!-- null -->
+	<list name="UnionPayCardType" >
+		<param >1</param>
+		<param >2</param>
+		<param >3</param>
+		<param >4</param>
+		<param >5</param>
+		<param >6</param>
+		<param >7</param>
+		<param >8</param>
+		<param >9</param>
+	</list>
+	<!-- 购汇还款类型 -->
+	<list name="RemitType" >
+		<param >2</param>
+		<param >3</param>
+	</list>
+	<!-- 收费单位 -->
+	<list name="EntCode" >
+		<param >51401</param>
+	</list>
+	<!-- 收款人填写方式 -->
+	<list name="PayeeMode" >
+		<param >0</param>
+		<param >1</param>
+	</list>
+	<!-- 学历 -->
+	<list name="Educate" >
+		<param >0</param>
+		<param >1</param>
+		<param >2</param>
+		<param >3</param>
+		<param >4</param>
+	</list>
+	<!-- 是否短信通知 -->
+	<list name="MessageNotify" >
+		<param >0</param>
+		<param >1</param>
+	</list>
+	<!-- 限额设置类别Id生成方式 -->
+	<list name="LimitRuleIdType" >
+		<param >0</param>
+		<param >1</param>
+		<param >2</param>
+	</list>
+	<!-- 行业类别 -->
+	<list name="CallingSort" >
+		<param >0</param>
+		<param >1</param>
+		<param >2</param>
+		<param >3</param>
+		<param >4</param>
+		<param >5</param>
+		<param >6</param>
+		<param >7</param>
+		<param >8</param>
+		<param >9</param>
+	</list>
+	<!-- 动态口令类型 -->
+	<list name="OTPType" >
+		<param >C</param>
+		<param >DC</param>
+		<param >DG</param>
+		<param >G</param>
+		<param >M</param>
+		<param >N</param>
+		<param >S</param>
+		<param >SC</param>
+	</list>
+	<!-- 转账频率 -->
+	<list name="TransFrequency" >
+		<param >0</param>
+		<param >1</param>
+		<param >2</param>
+	</list>
+	<!-- 邮寄地址选择 -->
+	<list name="ChooseAdd" >
+		<param >0</param>
+		<param >1</param>
+		<param >2</param>
+	</list>
+	<!-- 留言类型 -->
+	<list name="NoteType" >
+		<param >0</param>
+		<param >1</param>
+		<param >2</param>
+		<param >3</param>
+	</list>
+	<!-- 还款方式 -->
+	<list name="OperateFlag" >
+		<param >2</param>
+		<param >3</param>
+		<param >4</param>
+	</list>
+	<!-- 帐单邮寄方式 -->
+	<list name="BillPostType" >
+		<param >0</param>
+		<param >1</param>
+		<param >2</param>
+		<param >3</param>
+	</list>
+	<!-- null -->
+	<list name="LimitWarning" >
+		<param >0</param>
+		<param >1</param>
+	</list>
+	<!-- 系统规则编号 -->
+	<list name="RuleId" >
+		<param >AllowedPrdSets</param>
+		<param >BeanId</param>
+		<param >LimitPerDay</param>
+		<param >LimitPerTrs</param>
+		<param >LimitWarning</param>
+		<param >PSBankInnerTransfer</param>
+		<param >PSBatchTransfer</param>
+		<param >PSInterBankTransfer</param>
+		<param >PSRCBTransfer</param>
+		<param >PSTransfer</param>
+		<param >PinModule</param>
+		<param >WarnLimitPerDay</param>
+		<param >WarnLimitPerTrs</param>
+	</list>
+	<!-- null -->
+	<list name="House" >
+		<param >0</param>
+		<param >1</param>
+		<param >2</param>
+		<param >3</param>
+		<param >4</param>
+	</list>
+	<!-- 利率类别 -->
+	<list name="RateType" >
+		<param >0</param>
+		<param >1</param>
+	</list>
+	<!-- 转入账户性质 -->
+	<list name="PayeeAcctType" >
+		<param >0</param>
+		<param >1</param>
+	</list>
+	<!-- 转存类型 -->
+	<list name="TransAssType" >
+		<param >2</param>
+		<param >3</param>
+	</list>
+	<!-- 用户类型 -->
+	<list name="UserType" >
+		<param >1</param>
+		<param >2</param>
+		<param >3</param>
+	</list>
+	<!-- 日期范围 -->
+	<list name="DateRange" >
+		<param >1D</param>
+		<param >1M</param>
+		<param >3M</param>
+		<param >7D</param>
+	</list>
+	<!-- 处理状态 -->
+	<list name="CardState" >
+		<param ></param>
+		<param >00</param>
+		<param >01</param>
+		<param >02</param>
+		<param >03</param>
+		<param >04</param>
+		<param >05</param>
+		<param >06</param>
+		<param >07</param>
+		<param >08</param>
+		<param >09</param>
+		<param >2</param>
+		<param >A</param>
+		<param >B</param>
+		<param >C</param>
+		<param >D</param>
+		<param >E</param>
+		<param >F</param>
+		<param >H</param>
+		<param >I</param>
+		<param >K</param>
+		<param >L</param>
+		<param >M</param>
+		<param >N</param>
+		<param >O</param>
+		<param >P</param>
+		<param >Q</param>
+		<param >S</param>
+		<param >T</param>
+		<param >U</param>
+		<param >V</param>
+		<param >W</param>
+		<param >X</param>
+		<param >Y</param>
+		<param >Z</param>
+	</list>
+	<!-- 理财账户状态 -->
+	<list name="InvOwnState" >
+		<param >0</param>
+		<param >9</param>
+	</list>
+	<!-- 账单寄送频率 -->
+	<list name="AcFrequency" >
+		<param >0</param>
+		<param >1</param>
+		<param >2</param>
+		<param >3</param>
+		<param >4</param>
+	</list>
+	<!-- 规则类型 -->
+	<list name="RuleType" >
+		<param >AcLimit</param>
+		<param >Authentication</param>
+		<param >CSXml</param>
+		<param >CifLimit</param>
+		<param >Crypto</param>
+		<param >Fee</param>
+		<param >FieldFilter</param>
+		<param >Hint</param>
+		<param >LimitControl</param>
+		<param >Menu</param>
+		<param >MenuTreeDef</param>
+		<param >PrdSet</param>
+		<param >RelatedMenu</param>
+		<param >StylePattern</param>
+		<param >TrsDef</param>
+		<param >UserManager</param>
+	</list>
+	<!-- 贷款种类 -->
+	<list name="LoanType" >
+		<param >01</param>
+		<param >02</param>
+		<param >03</param>
+		<param >04</param>
+		<param >05</param>
+	</list>
+	<!-- 婚姻状况 -->
+	<list name="Wedlock" >
+		<param >0</param>
+		<param >1</param>
+		<param >2</param>
+		<param >3</param>
+	</list>
+	<!-- 定时回调标志 -->
+	<list name="TimerCallback" >
+		<param >N</param>
+		<param >Y</param>
+	</list>
+	<!-- 访问状态 -->
+	<list name="AccessState" >
+		<param >0</param>
+		<param >1</param>
+		<param >2</param>
+		<param >3</param>
+	</list>
+	<!-- null -->
+	<list name="StyleEnabled" >
+		<param >N</param>
+		<param >Y</param>
+	</list>
+	<!-- null -->
+	<list name="PrdSet" >
+		<param >PSBankInnerTransfer</param>
+		<param >PSBatchTransfer</param>
+		<param >PSInterBankTransfer</param>
+		<param >PSTransfer</param>
+	</list>
+	<!-- 贷款账户状态 -->
+	<list name="LoanAcctState" >
+		<param >00</param>
+		<param >01</param>
+		<param >02</param>
+		<param >03</param>
+		<param >04</param>
+		<param >05</param>
+		<param >06</param>
+		<param >07</param>
+		<param >08</param>
+		<param >09</param>
+		<param >10</param>
+		<param >11</param>
+		<param >12</param>
+		<param >13</param>
+		<param >14</param>
+	</list>
+	<!-- 还款类型 -->
+	<list name="PayForType" >
+		<param >F</param>
+		<param >M</param>
+		<param >T</param>
+	</list>
+	<!-- 运营商名称 -->
+	<list name="TSPName" >
+		<param >1</param>
+		<param >2</param>
+		<param >3</param>
+	</list>
+	<!-- 信用卡消费密码选择 -->
+	<list name="CreditNotifySetPwd" >
+		<param >0</param>
+		<param >1</param>
+		<param >9</param>
+	</list>
+	<!-- null -->
+	<list name="AskType" >
+		<param >0</param>
+		<param >1</param>
+	</list>
+	<!-- 调整帐单寄送方式 -->
+	<list name="CreditNotifySetAdd" >
+		<param >0</param>
+		<param >1</param>
+		<param >9</param>
+	</list>
+	<!-- null -->
+	<list name="BankLoanType" >
+		<param >01</param>
+		<param >02</param>
+		<param >03</param>
+		<param >04</param>
+		<param >05</param>
+		<param >06</param>
+		<param >07</param>
+		<param >08</param>
+	</list>
+	<!-- ChinaPay用户类型 -->
+	<list name="ChinaPayUserType" >
+		<param >0</param>
+		<param >1</param>
+	</list>
+	<!-- 预约转账方式 -->
+	<list name="BookTransferMethod" >
+		<param >0</param>
+		<param >1</param>
+	</list>
+	<!-- 信用卡摘要 -->
+	<list name="CreditRemark" >
+		<param >10</param>
+		<param >20</param>
+		<param >31</param>
+		<param >32</param>
+		<param >40</param>
+	</list>
+	<!-- 通知类型 -->
+	<list name="NoticeTerm" >
+		<param >N1</param>
+		<param >N7</param>
+	</list>
+	<!-- 账户状态 -->
+	<list name="AcState" >
+		<param >0</param>
+		<param >1</param>
+		<param >10</param>
+		<param >11</param>
+		<param >12</param>
+		<param >13</param>
+		<param >14</param>
+		<param >15</param>
+		<param >16</param>
+		<param >2</param>
+		<param >3</param>
+		<param >4</param>
+		<param >5</param>
+		<param >6</param>
+		<param >7</param>
+		<param >8</param>
+		<param >9</param>
+	</list>
+	<!-- 头像 -->
+	<list name="BardianImgRemark" >
+		<param >00</param>
+		<param >01</param>
+		<param >02</param>
+	</list>
+	<!-- 账单寄送方式 -->
+	<list name="AcMode" >
+		<param >0</param>
+		<param >1</param>
+		<param >2</param>
+		<param >3</param>
+	</list>
+	<!-- null -->
+	<list name="SysFlag" >
+		<param >0</param>
+		<param >1</param>
+		<param >2</param>
+	</list>
+	<!-- null -->
+	<list name="UserState" >
+		<param >0</param>
+		<param >1</param>
+		<param >2</param>
+		<param >9</param>
+	</list>
+	<!-- 信用卡是否开通取现功能 -->
+	<list name="CreditNotifySetCash" >
+		<param >0</param>
+		<param >1</param>
+		<param >9</param>
+	</list>
+	<!-- null -->
+	<list name="OutLinkEnabled" >
+		<param >N</param>
+		<param >Y</param>
+	</list>
+	<!-- 限额标志 -->
+	<list name="LimitFlag" >
+		<param >N</param>
+		<param >Y</param>
+	</list>
+	<!-- 通知存款预约到期是否转活期 -->
+	<list name="NoticeRenewFlag" >
+		<param >0</param>
+		<param >1</param>
+	</list>
+	<!-- 定时频率种类 -->
+	<list name="TimerFreq" >
+		<param >0</param>
+		<param >D</param>
+		<param >M</param>
+		<param >W</param>
+	</list>
+	<!-- 生日提醒 -->
+	<list name="BirthFlag" >
+		<param >0</param>
+		<param >1</param>
+	</list>
+	<!-- 贷款状态 -->
+	<list name="LoanState" >
+		<param >00</param>
+		<param >01</param>
+		<param >02</param>
+		<param >03</param>
+		<param >04</param>
+		<param >05</param>
+		<param >06</param>
+		<param >07</param>
+		<param >08</param>
+		<param >09</param>
+		<param >10</param>
+		<param >11</param>
+	</list>
+	<!-- 基金通维护标志 -->
+	<list name="FundMaintainFlag" >
+		<param >1</param>
+		<param >2</param>
+	</list>
+	<!-- 证件类型 -->
+	<list name="IdType" >
+		<param >00</param>
+		<param >01</param>
+		<param >02</param>
+		<param >03</param>
+		<param >04</param>
+		<param >05</param>
+		<param >06</param>
+		<param >07</param>
+		<param >08</param>
+		<param >09</param>
+		<param >10</param>
+		<param >11</param>
+		<param >12</param>
+		<param >13</param>
+		<param >14</param>
+		<param >15</param>
+		<param >16</param>
+		<param >17</param>
+		<param >18</param>
+		<param >19</param>
+		<param >20</param>
+		<param >21</param>
+		<param >22</param>
+		<param >23</param>
+	</list>
+	<!-- null -->
+	<list name="TrsState" >
+		<param ></param>
+		<param >0</param>
+		<param >1</param>
+	</list>
+	<!-- 日历 -->
+	<list name="Calendar" >
+		<param >10M</param>
+		<param >11M</param>
+		<param >1D</param>
+		<param >1M</param>
+		<param >1W</param>
+		<param >1Y</param>
+		<param >2D</param>
+		<param >2M</param>
+		<param >2W</param>
+		<param >2Y</param>
+		<param >3D</param>
+		<param >3M</param>
+		<param >3W</param>
+		<param >3Y</param>
+		<param >4D</param>
+		<param >4M</param>
+		<param >4W</param>
+		<param >4Y</param>
+		<param >5D</param>
+		<param >5M</param>
+		<param >5Y</param>
+		<param >6D</param>
+		<param >6M</param>
+		<param >7M</param>
+		<param >8M</param>
+		<param >9M</param>
+	</list>
+	<!-- 主附卡类型 -->
+	<list name="CardFlag" >
+		<param >0</param>
+		<param >1</param>
+		<param >2</param>
+		<param >3</param>
+		<param >4</param>
+		<param >5</param>
+		<param >6</param>
+		<param >7</param>
+		<param >8</param>
+		<param >9</param>
+	</list>
+	<!-- 是否转存标志 -->
+	<list name="TimRenewFlag" >
+		<param >0</param>
+		<param >1</param>
+		<param >10</param>
+		<param >11</param>
+		<param >2</param>
+		<param >3</param>
+		<param >9</param>
+	</list>
+	<!-- 渠道号 -->
+	<list name="ChannelId" >
+		<param >AGE</param>
+		<param >APK</param>
+		<param >ATM</param>
+		<param >BAT</param>
+		<param >CRE</param>
+		<param >ETS</param>
+		<param >IBS</param>
+		<param >INT</param>
+		<param >MBS</param>
+		<param >MID</param>
+		<param >OTH</param>
+		<param >PAY</param>
+		<param >POS</param>
+		<param >TBS</param>
+		<param >UPS</param>
+	</list>
+	<!-- 操作类型 -->
+	<list name="ActType" >
+		<param >0</param>
+		<param >1</param>
+		<param >2</param>
+		<param >3</param>
+	</list>
+	<!-- 预约转账类型 -->
+	<list name="BookTransferType" >
+		<param >0</param>
+		<param >1</param>
+	</list>
+	<!-- 交易代码 -->
+	<list name="TransCode" >
+		<param ></param>
+		<param >ATMandPOSLimitMgmt</param>
+		<param >AcPassModify</param>
+		<param >AcctLost</param>
+		<param >ActLimitMng</param>
+		<param >ActPointChGiftRes</param>
+		<param >AgentPayCMMFee</param>
+		<param >AgentPayCUMFee</param>
+		<param >AgentPayElectFee</param>
+		<param >AgentSignAdd</param>
+		<param >AgentSignCancel</param>
+		<param >BankInnerPayeeAdd</param>
+		<param >BankInnerTransfer</param>
+		<param >BatchTransfer</param>
+		<param >BatchTransferV1</param>
+		<param >BookTransCancel</param>
+		<param >BookingTransfer</param>
+		<param >BookingTransferCancel</param>
+		<param >BuyBondsResult</param>
+		<param >CashBondsResult</param>
+		<param >CashBookAdd</param>
+		<param >CreditAcNoAddrSet</param>
+		<param >CreditActive</param>
+		<param >CreditAttachQuotaApply</param>
+		<param >CreditChangCardAppley</param>
+		<param >CreditCustAddrUpd</param>
+		<param >CreditCustInfoUpd</param>
+		<param >CreditDrawCash</param>
+		<param >CreditEmailAddrSet</param>
+		<param >CreditLost</param>
+		<param >CreditPassModify</param>
+		<param >CreditPostForSet</param>
+		<param >CreditQuotaApply</param>
+		<param >CreditRelatingAcNo</param>
+		<param >CreditSumModify</param>
+		<param >CreditV2Active</param>
+		<param >CrossBankPayeeAdd</param>
+		<param >EBankPassModify</param>
+		<param >EBankTrsPwdModify</param>
+		<param >EletrPay</param>
+		<param >FundActClose</param>
+		<param >FundActOpen</param>
+		<param >FundActReg</param>
+		<param >FundCancel</param>
+		<param >FundChange</param>
+		<param >FundInvestAdd</param>
+		<param >FundInvestCancel</param>
+		<param >FundPurchase</param>
+		<param >FundRaiseUpd</param>
+		<param >FundRee</param>
+		<param >FundSubscribe</param>
+		<param >InvActClose</param>
+		<param >InvPrdRee</param>
+		<param >InvTrsCancel</param>
+		<param >MacBind</param>
+		<param >MacUnbind</param>
+		<param >MenuNavigationAdd</param>
+		<param >Message</param>
+		<param >MessageModify</param>
+		<param >NetBankStop</param>
+		<param >NoticeDraw</param>
+		<param >NoticeDrawCancel</param>
+		<param >NoticeDrawNotify</param>
+		<param >PDonateTransfer</param>
+		<param >PayForCredit</param>
+		<param >PayForCreditForC</param>
+		<param >PayForCreditSet</param>
+		<param >PayForCreditSetForC</param>
+		<param >PayGateTransfer</param>
+		<param >PayeeBookCrossModify</param>
+		<param >PayeeBookDelete</param>
+		<param >PayeeBookInnerModify</param>
+		<param >PaymentOpenClose</param>
+		<param >PerAcPrdSetLimitRes</param>
+		<param >PostForSet</param>
+		<param >PromiseCancel</param>
+		<param >PromiseFDBI</param>
+		<param >PromiseTim</param>
+		<param >RCBTransfer</param>
+		<param >RelaActAdd</param>
+		<param >RelaActDelete</param>
+		<param >RelaActModify</param>
+		<param >RelaActMove</param>
+		<param >RemiPayeeSe</param>
+		<param >RemiPayeeSet</param>
+		<param >RemiPayeeSetForC</param>
+		<param >ResetQryPasswd</param>
+		<param >SavToFDBI</param>
+		<param >SavToNotice</param>
+		<param >SavToSav</param>
+		<param >SavToSavInner</param>
+		<param >SavToTim</param>
+		<param >SignActUpd</param>
+		<param >SignCustInfoUpd</param>
+		<param >TelPay</param>
+		<param >TimAcAdd</param>
+		<param >TimAcDel</param>
+		<param >TimToSav</param>
+		<param >TimToTim</param>
+		<param >TransNotifySet</param>
+		<param >Transfer</param>
+		<param >TrsfrPlcy</param>
+		<param >UnSign</param>
+		<param >UpdQryPasswd</param>
+		<param >UpdTransPasswd</param>
+		<param >UpdUserCert</param>
+		<param >UserCifMgmt</param>
+		<param >UserInfoMgmt</param>
+		<param >UsrActLimitMng</param>
+		<param >WaterPay</param>
+		<!-- add by pan-f 2010/11/26 -->
+		<param>StmtSetting</param>
+	</list>
+	<!-- 交易状态 -->
+	<list name="JnlState" >
+		<param >0</param>
+		<param >1</param>
+		<param >2</param>
+		<param >3</param>
+		<param >5</param>
+		<param >6</param>
+		<param >9</param>
+	</list>
+	<!-- 身份认证介质类型 -->
+	<list name="AuthDevType" >
+		<param >1</param>
+	</list>
+	<!-- null -->
+	<list name="UnionPayUsePassword" >
+		<param >0</param>
+		<param >1</param>
+	</list>
+	<!-- 条件标志 -->
+	<list name="TFFlag" >
+		<param >N</param>
+		<param >Y</param>
+	</list>
+	<!-- 付款用途 -->
+	<list name="Remark" >
+		<param >00</param>
+		<param >01</param>
+		<param >02</param>
+		<param >03</param>
+		<param >04</param>
+		<param >05</param>
+		<param >06</param>
+		<param >07</param>
+		<param >08</param>
+		<param >09</param>
+		<param >10</param>
+		<param >11</param>
+		<param >12</param>
+		<param >13</param>
+		<param >14</param>
+		<param >15</param>
+		<param >16</param>
+		<param >17</param>
+		<param >18</param>
+		<param >19</param>
+		<param >20</param>
+		<param >21</param>
+		<param >22</param>
+		<param >23</param>
+	</list>
+	<!-- 还款方式 -->
+	<list name="RepayType" >
+		<param >01</param>
+		<param >02</param>
+		<param >03</param>
+		<param >04</param>
+		<param >05</param>
+	</list>
+	<!-- 账户权限 -->
+	<list name="AcPermit" >
+		<param >0</param>
+		<param >1</param>
+		<param >2</param>
+	</list>
+	<!-- add by pan-f 2010/11/29 -->
+	<!-- 账单类型 -->
+	<list name="StmtType" >
+		<param >DEP0000001</param>
+		<param >STM0000001</param>
+	</list>
+	<!-- 寄送方式 -->
+	<list name="DeliveryType" >
+		<param >P</param>
+		<param >E</param>
+	</list>
+	<!-- 短信通知 -->
+	<list name="SmsNotifyInd" >
+		<param >Y</param>
+		<param >N</param>
+	</list>
+	<!-- 汇款方式，汇路 -->
+	<list name="PayPath" >
+		<param >0</param>
+		<param >1</param>
+		<param >2</param>
+		<param >3</param>
+		<param >4</param>
+	</list>
+	
+	<!-- 其他服务 add by Hydra begin -->
+	<list name='StorageBankDept'>
+		<param>0100</param>
+	</list>
+	
+	<list name='StorageIdType'>
+		<param>00</param>
+		<param>03</param>
+		<param>05</param>
+		<param>07</param>
+		<param>22</param>
+	</list>
+	<!-- 其他服务 add by Hydra  end  -->
+</map>
+</sharedMap>
+</config>
+</spring:beans>

@@ -1,0 +1,40 @@
+<spring:beans xmlns:spring="http://www.springframework.org/schema/beans"
+	xmlns="http://www.csii.com.cn/schema/pe" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+       					   http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd
+       					   http://www.csii.com.cn/schema/pe	http://www.csii.com.cn/schema/pe/pe-1.0.xsd">
+
+	<transaction id="login0" template="publicSequenceTemplate">
+		<actions>
+			<ref name="action">GateWayAction</ref>
+		</actions>
+		<fields>
+			<field name="userId"></field>
+			<field name="password"></field>
+		</fields>
+		<channels>
+			<channel type="http">
+				<param name="success">json,[Name|TrsId|Port]</param>
+			</channel>
+		</channels>
+	</transaction>
+
+	<transaction id="login1" template="publicSequenceTemplate">
+		<actions>
+			<ref name="action">GateWayAction</ref>
+		</actions>
+		<fields>
+			<field name="userId"></field>
+			<field name="password"></field>
+		</fields>
+		<channels>
+			<channel type="http">
+				<param name="success">json,[Name|TrsId|Port]</param>
+			</channel>
+		</channels>
+	</transaction>
+
+	<action id="GateWayAction"
+		class="com.csii.pe.samples.springcloud.gateway.GateWayAction" />
+</spring:beans>

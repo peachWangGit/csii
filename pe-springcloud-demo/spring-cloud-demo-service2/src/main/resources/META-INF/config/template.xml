@@ -1,0 +1,30 @@
+<spring:beans xmlns:spring="http://www.springframework.org/schema/beans"
+	xmlns="http://www.csii.com.cn/schema/pe" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+       					   http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd
+       					   http://www.csii.com.cn/schema/pe	http://www.csii.com.cn/schema/pe/pe-1.0.xsd">
+<config>
+	<template id="emptyTemplate" class="com.csii.pe.template.EmptyTemplate" chain="emptyChain" />
+	<template id="publicSequenceTemplate" class="com.csii.pe.template.ExecutableSequenceTemplate" chain="chainForPublic" />
+	<template id="pageLoaderTemplate" class="com.csii.pe.template.PageLoaderSequenceTemplate" chain="chainForPublic">
+<!-- 		<actions> -->
+<!-- 			<ref name="action">Placeholder</ref> -->
+<!-- 		</actions> -->
+	</template>
+	
+	<template id="twoPhaseTrsTemplate" class="com.csii.ibs.workflow.TwoPhaseTrsTemplate" chain="chainForPublic">
+		<actions>
+			<ref name="preAction">dummyAction</ref>
+			<ref name="aftAction">dummyAction</ref>
+			<ref name="action">Placeholder</ref>
+		</actions>
+	</template>
+	
+	<template id="trsConfirmTemplate" class="com.csii.ibs.workflow.TrsConfirmTemplate" chain="chainForPublic">
+		<actions>
+			<ref name="action">Placeholder</ref>
+		</actions>
+	</template>
+</config>
+</spring:beans>

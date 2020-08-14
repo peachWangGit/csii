@@ -1,0 +1,16 @@
+<spring:beans xmlns:spring="http://www.springframework.org/schema/beans"
+	xmlns="http://www.csii.com.cn/schema/pe" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+       					   http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd
+       					   http://www.csii.com.cn/schema/pe	http://www.csii.com.cn/schema/pe/pe-1.0.xsd">
+
+<config>
+	<!-- * 说明： * * 通用交易组件（Action）。 * * 说明：此处提供了对各个交易流程所需要的通用组件Action定义。 * * 
+		其中包括交易日志、用户卡号密码验证、动态口令、动态验证码等。 * -->
+
+	<action id="Placeholder" class="com.csii.pe.action.PlaceholderAction" />
+	<action id="dummyAction" class="com.csii.ibs.action.DummyAction" />
+
+</config>
+</spring:beans>

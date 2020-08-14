@@ -1,0 +1,69 @@
+<spring:beans xmlns:spring="http://www.springframework.org/schema/beans"
+	xmlns="http://www.csii.com.cn/schema/pe" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+       					   http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd
+       					   http://www.csii.com.cn/schema/pe	http://www.csii.com.cn/schema/pe/pe-1.0.xsd">
+
+<config>
+	<!-- Public Chain -->
+	<chain id="emptyChain">
+		<commands>
+		</commands>
+	</chain>
+
+	<chain id="chainForPublic">
+		<commands>
+			<ref>validationCommand</ref>
+			<ref>accessControlCommand</ref>
+			<ref>delegateCommand</ref>
+			<ref>timestampCommand</ref>
+		</commands>
+	</chain>
+	<!-- End of Role Control Chain -->
+
+	<!-- Commands of chains -->
+
+	<command id="dummyCommand" class="com.csii.pe.chain.command.DummyCommand" />
+
+	<command id="delegateCommand" class="com.csii.pe.chain.command.DelegateCommand" />
+	
+	<command id="accessControlCommand" class="com.csii.pe.chain.command.AccessControlCommand">
+		<list name="policies">
+			<!-- <ref>a bean which implemented interface com.csii.pe.accesscontrol.Policy</ref> -->
+		</list>
+	</command>
+	
+	<!-- 在日志文件中输出交易消耗时间 -->
+	<command id="timestampCommand" class="com.csii.pe.chain.command.TimestampCommand" />
+
+	<!-- 数据校验 -->
+	<command id="validationCommand" class="com.csii.pe.core.extend.validation.GreedyValidationCommand" />
+
+	<!-- Deprecated -->
+	<!-- 
+	com.csii.pe.core.extend.validation.GreedyValidationCommand and 
+	com.csii.pe.core.extend.validation.StyleValidationCommand
+	已实现该功能
+	-->
+	<command id="ruleCommand" class="com.csii.pe.chain.command.RuleCommand" />
+	
+	<!-- 用于防止重复提交 -->
+	<command id="tokenControlCommand" class="com.csii.pe.chain.command.AccessControlCommand">
+		<list name="policies">
+			<ref>tokenControlPolicy</ref>
+		</list>
+	</command>
+	<policy id="tokenControlPolicy" class="com.csii.pe.accesscontrol.token.TokenControlPolicy">
+		<ref name="tokenManager">tokenManager</ref>
+		<param name="messageKey">validation.resubmit_same_token</param>
+	</policy>
+	<bean id="tokenManager" class="com.csii.pe.accesscontrol.token.ResubmitTokenManager">
+		<param name="tokenName">_tokenName</param>
+		<param name="tokenListName">_DCTOKENLIST</param>
+		<param name="delayTime">600</param>
+		<param name="maxEntryNumber">3</param>
+		<param name="tokenLength">6</param>
+	</bean>
+</config>
+</spring:beans>
